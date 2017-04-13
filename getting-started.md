@@ -1,13 +1,13 @@
 # Getting started
 
-In this section you'll decide whether you actually want to use tkinter,
-and if you do, you'll get started with it.
+In this section we'll talk about which GUI toolkit you should use, and
+if you choose tkinter we'll get started with using it.
 
 ## Tkinter, GTK+ or Qt?
 
 GUI is short for Graphical User Interface. It means a program that we
-can use without a command prompt or a terminal, like Firefox. Many
-editors have GUIs too.
+can use without a command prompt or a terminal, like a web browser, a
+file manager or an editor.
 
 Tkinter is an easy way to write GUIs in Python. Unlike bigger GUI
 toolkits like Qt and GTK+, tkinter comes with Python so many Python
@@ -27,6 +27,11 @@ You can also use [PyQt](http://zetcode.com/gui/pyqt5/) if you want to
 write cross-platform GUI programs. It doesn't come with Python and
 installing it can be difficult, but PyQt programs look good on Windows,
 Mac and Linux.
+
+Tkinter is light, but it's also limited in some ways. For example, you
+can't write a web browser in tkinter, but it's possible to write web
+browsers in GTK+ and PyQt. Simpler things like text editors and music
+players can be written in tkinter.
 
 ## What is tkinter?
 
