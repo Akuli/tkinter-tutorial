@@ -1,4 +1,4 @@
-# Tkinter Buttons
+# Button widgets
 
 In [the previous section](getting-started.md) we learned to use tkinter,
 and we also talked about some common issues and anti-patterns. Now we
