@@ -174,7 +174,8 @@ name, and print converts everything to strings using `str()`.
 
 So if you're trying to print a variable and you get something like
 `.!label` or `.3071874380`, it's probably a tkinter widget. You can also
-check that with `print(repr(something))`:
+check that with `print(repr(something))`, it does the same thing as
+looking at the widget on the `>>>` prompt:
 
 ```python
 >>> print(repr(label))
@@ -257,9 +258,9 @@ also a list of the manual pages
 [here](https://www.tcl.tk/man/tcl/TkCmd/contents.htm).
 
 If you are using Linux and you want to read the manual pages on a
-terminal or without an internet connection, you can also install Tk's
-manual pages using your package manager. For example, you can use this
-command on Debian-based distributions:
+terminal, you can also install Tk's manual pages using your package
+manager. For example, you can use this command on Debian-based
+distributions:
 
 ```
 sudo apt install tk-doc
@@ -276,25 +277,22 @@ man 3tk label
 - Tkinter is an easy way to write cross-platform GUIs.
 - Now you should have tkinter installed and you should know how to use
   it on the `>>>` prompt.
-- You should be able to read Tk's manual pages.
 - Don't use star imports or create multiple root windows.
 - You can set the values of Tk's options when creating widgets like
   `label = tk.Label(root, text="hello")`, and you can change them later
   using any of these ways:
-
     ```python
     label['text'] = "new text"
     label.config(text="new text")
     label.configure(text="new text")
     ```
-
 - You can get the current values of options like this:
-
     ```python
     print(label['text'])
     print(label.cget('text'))
     ```
-
+- If `print(something)` prints something weird, try
+  `print(repr(something))`.
 - You can view all options and their values like
   `pprint.pprint(dict(some_widget))`. The options are explained in the
   manual pages.
