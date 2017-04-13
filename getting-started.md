@@ -1,5 +1,8 @@
 # Getting started
 
+In this section you'll decide whether you actually want to use tkinter,
+and if you do, you'll get started with it.
+
 ## Tkinter, GTK+ or Qt?
 
 GUI is short for Graphical User Interface. It means a program that we
@@ -142,7 +145,9 @@ you can run `root.update()` regularly to make it display your changes.
 
 If you try to print a tkinter widget, the results can be surprising.
 
-```python
+[comment]: # (github screws up with syntax highlighting here)
+
+```
 >>> print(label)
 .!label
 ```
