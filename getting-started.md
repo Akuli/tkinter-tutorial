@@ -70,7 +70,7 @@ screenshots, so here's some ASCII art:
 
 ```
 ,------------------.
-|  tk  | _ | o | X |
+| tk   | _ | o | X |
 |------------------|
 |   Hello World!   |
 `------------------'
@@ -116,8 +116,12 @@ label = tk.Label(root, text="Hello World!")
 
 Like most other GUI toolkits, Tk uses **widgets**. A widget is something
 that we see on the screen. Our program has two widgets. The root window
-is a widget and this label is a widget. A label is a widget that just
+is a widget, and this label is a widget. A label is a widget that just
 displays text.
+
+Note that most widgets take a **parent widget** as the first argument.
+When we do `tk.Label(root)`, the root window becomes the parent so the
+label will be displayed in the root window.
 
 ```python
 label.pack()

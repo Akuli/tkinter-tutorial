@@ -7,10 +7,12 @@ inheritance, and I didn't know what was a class at the time.
 
 This tutorial consists of minimal examples and explains common mistakes.
 You don't need to have any experience in GUI programming to read this
-tutorial, all you need is [basic Python
+tutorial, and you don't even need to know what is a GUI. All you need is
+[basic Python
 skills](https://github.com/Akuli/python-tutorial/tree/master/basics#basics).
 
 Here's a list of the contents:
 
 1. [Getting started](getting-started.md)
 2. [Button widgets](buttons.md)
+3. [Geometry managers](geometry-managers.md)
