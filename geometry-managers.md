@@ -64,7 +64,7 @@ has horizontally. We can also do `fill='y'` or `fill='both'`.
 
 Obviously, `side='bottom'` means that the status bar will appear at the
 bottom of the window. The default is `side='top'`. Note that I packed
-the status bar **before** packing any other widgets, because even with
+the status bar **before packing any other widgets**, because even with
 `side='bottom'`, it won't go below widgets that are already packed with
 `side='left'` or `side='right'`.
 
@@ -211,9 +211,6 @@ for y in range(4):
 root.title("Calculator")
 root.mainloop()
 ```
-
-This calculator is boring because the buttons don't actually do
-anything.
 
 ## Place
 
