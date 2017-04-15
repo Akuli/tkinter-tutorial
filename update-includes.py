@@ -15,7 +15,7 @@ this:
 
     [include]: # (some/cool/file.py)
     ```python
-    here's the content from some/cool/file.py
+    here's the content of some/cool/file.py
     ```
 """
 
@@ -28,7 +28,7 @@ _INCLUDE_REGEX = (
     r'^\[include\]: # \((.*)\)\n'
     r'```.*\n'
     r'([\S\s]*?)'
-    r'```$'
+    r'^```$'
 )
 
 
