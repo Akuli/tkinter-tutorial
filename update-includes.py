@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Simple include directives.
 
 This script allows you to write markdown like this:
