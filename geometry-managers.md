@@ -30,6 +30,7 @@ this with it:
 
 Here's the code.
 
+[include]: # (examples/pack.py)
 ```python
 import tkinter as tk
 
@@ -91,6 +92,7 @@ of the label.
 Let's make a similar GUI as in the pack example, but with
 [grid(3tk)](https://www.tcl.tk/man/tcl/TkCmd/grid.htm) instead of pack.
 
+[include]: # (examples/grid.py)
 ```python
 import tkinter as tk
 
@@ -108,7 +110,7 @@ statusbar.grid(row=1, column=0, columnspan=2, sticky='we')
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
 
-root.title("Pack Test")
+root.title("Grid Test")
 root.geometry('300x150')
 root.mainloop()
 ```
@@ -177,6 +179,7 @@ Here's another, more advanced grid example:
 Something like this would be almost impossible to do with pack, but it's
 easy with grid:
 
+[include]: # (examples/calculator.py)
 ```python
 import tkinter as tk
 
@@ -237,6 +240,7 @@ almost always a bad idea. But place supports relative positioning too.
 
 Here's the code:
 
+[include]: # (examples/place.py)
 ```python
 import tkinter as tk
 
@@ -301,6 +305,7 @@ different geometry manager.
 For example, this program uses pack, grid and place, but in separate
 frames:
 
+[include]: # (examples/frames.py)
 ```python
 import tkinter as tk
 
