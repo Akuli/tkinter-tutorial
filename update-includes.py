@@ -24,11 +24,10 @@ import re
 
 
 _INCLUDE_REGEX = (
-    r'\n'
-    r'\[include\]: # \((.*)\)\n'
+    r'^\[include\]: # \((.*)\)\n'
     r'```.*\n'
     r'([\S\s]*?)'
-    r'```\n'
+    r'```$'
 )
 
 
@@ -52,7 +51,7 @@ def main():
         with open(filename, 'r') as file:
             current = file.read()
 
-        fixed = re.sub(_INCLUDE_REGEX, replacer, current)
+        fixed = re.sub(_INCLUDE_REGEX, replacer, current, flags=re.MULTILINE)
         if current == fixed:
             print("Already OK:", filename)
         else:
