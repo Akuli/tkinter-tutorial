@@ -1,8 +1,10 @@
 import functools
 import tkinter as tk
 
+
 def print_hello_number(number):
     print("hello", number)
+
 
 root = tk.Tk()
 for i in range(1, 6):

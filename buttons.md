@@ -75,8 +75,10 @@ clicked. This program prints hello every time we click its button:
 ```python
 import tkinter as tk
 
+
 def print_hello():
     print("hello")
+
 
 root = tk.Tk()
 button = tk.Button(root, text="Print hello", command=print_hello)
@@ -105,11 +107,14 @@ about 0.1 seconds or less. Let's make a callback function that runs for
 import time
 import tkinter as tk
 
+
 def ok_callback():
     print("hello")
 
+
 def stupid_callback():
     time.sleep(5)
+
 
 root = tk.Tk()
 button1 = tk.Button(root, text="This is OK", command=ok_callback)
@@ -175,8 +180,10 @@ So we can write code like this:
 import functools
 import tkinter as tk
 
+
 def print_hello_number(number):
     print("hello", number)
+
 
 root = tk.Tk()
 for i in range(1, 6):
