@@ -46,3 +46,4 @@ players can be written in tkinter.
 1. [Getting started](getting-started.md)
 2. [Button widgets](buttons.md)
 3. [Geometry managers](geometry-managers.md)
+4. [Dialogs](dialogs.md)
