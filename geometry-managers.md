@@ -310,7 +310,7 @@ frames:
 import tkinter as tk
 
 
-def make_calculator(root):
+def make_calculator_frame(root):
     frame = tk.Frame(root)
 
     rows = [
@@ -339,7 +339,7 @@ def make_calculator(root):
     return frame
 
 
-def make_message(root):
+def make_message_frame(root):
     frame = tk.Frame(root)
 
     label = tk.Label(frame, text="This is a very important message.")
@@ -353,8 +353,8 @@ def make_message(root):
 def main():
     root = tk.Tk()
 
-    calculator = make_calculator(root)
-    message = make_message(root)
+    calculator = make_calculator_frame(root)
+    message = make_message_frame(root)
     statusbar = tk.Label(root, text="This is a status bar.", relief='sunken')
 
     statusbar.pack(side='bottom', fill='x')
