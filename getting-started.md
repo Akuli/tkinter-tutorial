@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 Tkinter is a wrapper around a GUI toolkit called Tk. It's usually used
 through a language called Tcl, but tkinter allows us to use Tcl and Tk

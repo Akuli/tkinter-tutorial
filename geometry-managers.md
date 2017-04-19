@@ -1,4 +1,4 @@
-# Geometry managers
+# Geometry Managers
 
 So far we have used the `pack()` method to add labels and buttons to our
 root window. Pack is one of the simplest geometry managers in Tk. In

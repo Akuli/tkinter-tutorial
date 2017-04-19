@@ -1,4 +1,4 @@
-# Tkinter tutorial for beginners
+# Tkinter Tutorial for Beginners
 
 When I was getting started with Python I loved writing Tkinter GUIs. At
 first they felt really complicated because the tutorial I was following
@@ -43,7 +43,7 @@ players can be written in tkinter.
 
 ## List of contents
 
-1. [Getting started](getting-started.md)
-2. [Button widgets](buttons.md)
-3. [Geometry managers](geometry-managers.md)
+1. [Getting Started](getting-started.md)
+2. [Buttons](buttons.md)
+3. [Geometry Managers](geometry-managers.md)
 4. [Dialogs](dialogs.md)
