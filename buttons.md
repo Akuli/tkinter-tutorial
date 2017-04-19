@@ -7,8 +7,8 @@ fun things with tkinter.
 
 ## Our first button
 
-So far our program just displays some text and that's it. In this
-chapter we'll add a button that we can click into it.
+So far our programs just display text and that's it. In this chapter
+we'll add a button that we can click.
 
 ```
 ,---------------------------.
@@ -92,15 +92,13 @@ when the button is clicked.
 
 This is still boring because the program prints to the terminal or
 command prompt instead of displaying a nice message box. We'll learn to
-make message boxes later.
-
-**TODO:** write about message boxes
+make message boxes [later](dialogs.md).
 
 ## Blocking callback functions
 
-In tkinter and other GUI toolkits, all callback functions should run
-about 0.1 seconds or less. Let's make a callback function that runs for
-5 seconds and see what happens:
+In tkinter and other GUI toolkits, all callbacks should run about 0.1
+seconds or less. Let's make a callback function that runs for 5 seconds
+and see what happens:
 
 [include]: # (examples/stupid-callback.py)
 ```python
@@ -202,5 +200,6 @@ functions in loops can be
 - The `tk.Button` widget displays a button.
 - Buttons have a `command` option. It can be set to a function that runs
   when the button is clicked.
-- Button commands and other callbacks should run only a short time,
-  about 0.1 seconds or less.
+- Button commands and other callbacks should not block. It means that
+  they should run only a short time, about 0.1 seconds or less.
+- Use `functools.partial` when you need to pass arguments to callbacks.

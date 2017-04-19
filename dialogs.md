@@ -43,9 +43,8 @@ tkinter. Why can't we just `import tkinter as tk` and use
 `tk.messagebox`? Actually we can, but only if something else has already
 imported the `messagebox`, so it's not a good idea.
 
-The reason is that `import tkinter` actually loads
-`tkinter/__init__.py`, but `tkinter.messagebox` comes from
-`tkinter/messagebox.py`:
+The reason is that `import tkinter` loads `tkinter/__init__.py`, but
+`tkinter.messagebox` comes from `tkinter/messagebox.py`:
 
 ```python
 >>> import tkinter      # only __init__.py loads
@@ -215,7 +214,7 @@ any other windows. For example, our program might need to display an
 error message and exit before the main window is created.
 
 In these cases, we can create a root window and hide it with the
-withdraw method. It's documented in the
+`withdraw()` method. It's documented in the
 [wm(3tk)](https://www.tcl.tk/man/tcl/TkCmd/wm.htm) manual page; you can
 scroll down to it or just press Ctrl+F and type "withdraw".
 
