@@ -3,7 +3,7 @@
 Now we know how to make a button that prints a message on the terminal.
 But that's boring! We want to display a nice message box instead.
 
-## Tkinter's dialogs
+## Built-in dialogs
 
 Tkinter comes with many useful functions for making message dialogs.
 Here's a simple example:
@@ -28,7 +28,7 @@ That's pretty cool. We can create a dialog with a label and an OK button
 and wait for the user to click the button with just one function call.
 
 If you have used [buttons](buttons.md) before most of the code is pretty
-easy to understand. There's only one thing that needs explaning:
+easy to understand. But a couple things need explaning:
 
 ```python
 import tkinter as tk
@@ -63,11 +63,15 @@ Here Python didn't load `tkinter.messagebox` right away because many
 tkinter programs don't need it and `import tkinter` runs faster if
 Python doesn't need to load `messagebox.py` at all.
 
+Another thing to note that [the callback is
+blocking](buttons.md#blocking-callback-functions). It doesn't matter
+here because Tk handles message boxes specially.
+
 The `tkinter.messagebox` module supports many other things too, and
 there are other modules like it as well. Here's an example that
 demonstrates most of the things that are possible. You can use this
-program when you need to use a dialog, but you don't remember which
-function you should use.
+program when you need to use a dialog so you don't remember which
+function to use.
 
 Note that many of these functions return None if you close the dialog
 using the X button in the corner.
@@ -177,6 +181,18 @@ is handy with bigger programs. I explained `functools.partial`
 [here](buttons.md#passing-arguments-to-callback-functions), so you can
 read that if you haven't seen it before.
 
+Many of these functions can take other keyword arguments too. Most of
+them are explained in the Tk manual pages:
+
+| Python module             | Manual page   |
+| ------------------------- | ------------- |
+| `tkinter.messagebox`      | [tk_messageBox(3tk)](https://www.tcl.tk/man/tcl/TkCmd/messageBox.htm) |
+| `tkinter.filedialog`      | [tk_getOpenFile(3tk)](https://www.tcl.tk/man/tcl/TkCmd/getOpenFile.htm) and
+                              [tk_chooseDirectory(3tk)](https://www.tcl.tk/man/tcl/TkCmd/chooseDirectory.htm) |
+| `tkinter.colorchooser`    | [tk_chooseColor(3tk)](https://www.tcl.tk/man/tcl/TkCmd/chooseColor.htm) |
+| `tkinter.filedialog`      | No manual page, but the module seems to be from [this
+                              tutorial](http://effbot.org/tkinterbook/tkinter-dialog-windows.htm). |
+
 ## Message dialogs without the root window
 
 Let's try displaying a message without making a root window first and
@@ -188,7 +204,7 @@ see if it works:
 ```
 
 This code creates a message box correctly, but it also creates a stupid
-window in the back ground. The problem is that tkinter needs a root
+window in the background. The problem is that tkinter needs a root
 window to display the message, but we didn't create a root window yet so
 tkinter created it for us.
 
@@ -213,9 +229,122 @@ root.withdraw()
 messagebox.showerror("Fatal Error", "Something went badly wrong :(") 
 ```
 
-The root window hides itself so quickly that it's impossible to notice
-it at all.
+The root window hides itself so quickly that we don't notice it at all.
 
-## Custom message dialogs
+## Custom dialogs
 
-**TODO**
+Tkinter's default dialogs are enough most of the time, but sometimes it
+makes sense to create a custom dialog. For example, a tkinter program
+might have a custom setting dialog, but everything else would be done
+with tkinter's dialogs.
+
+It might be tempting to create multiple root windows, but **don't do
+this, this example is BAD**:
+
+```python
+import tkinter as tk
+
+
+def display_dialog():
+    root2 = tk.Tk()
+    label = tk.Label(root2, text="Hello World")
+    label.place(relx=0.5, rely=0.3, anchor='center')
+    root2.mainloop()
+
+
+root = tk.Tk()
+button = tk.Button(root, text="Click me", command=display_dialog)
+button.pack()
+root.mainloop()
+```
+
+The problem is that we have two root windows at the same time. Things
+like message boxes need a root window, and if we create more than one
+root window, we can't be sure about which root window is used and we may
+get weird problems.
+
+The [toplevel(3tk)](https://www.tcl.tk/man/tcl/TkCmd/toplevel.htm)
+widget is a window that uses an existing root window:
+
+[include]: # (examples/toplevel.py)
+```python
+import tkinter as tk
+
+
+def display_dialog():
+    dialog = tk.Toplevel()
+
+    label = tk.Label(dialog, text="Hello World")
+    label.place(relx=0.5, rely=0.3, anchor='center')
+
+    dialog.transient(root)
+    dialog.geometry('300x150')
+    dialog.wait_window()
+
+
+root = tk.Tk()
+button = tk.Button(root, text="Click me", command=display_dialog)
+button.pack()
+root.mainloop()
+```
+
+You probably understand how most of this code works, but there are a
+couple lines that need explanations:
+
+```python
+dialog.transient(root)
+```
+
+This line makes the dialog look like it belongs to the root window. It's
+always in front of the root window, and it may be centered over the root
+window too. You can leave this out if you don't like it.
+
+```python
+dialog.wait_window()
+```
+
+This is like `root.mainloop()`, it waits until the dialog is destroyed.
+
+Clicking on the X button destroys the dialog, but it's also possible to
+destroy it with the `destroy()` method. This is useful for creating
+buttons that close the dialog:
+
+```python
+okbutton = tk.Button(dialog, text="OK", command=dialog.destroy)
+```
+
+## "Do you want to quit" dialogs
+
+Many programs display a "do you want to save your changes?" dialog when
+the user closes the main window. We can also do this with tkinter using
+the `root.protocol()` method. It's documented in
+[wm(3tk)](https://www.tcl.tk/man/tcl/TkCmd/wm.htm).
+
+[include]: # (examples/wanna-quit.py)
+```python
+import tkinter as tk
+from tkinter import messagebox
+
+
+def wanna_quit():
+    if messagebox.askyesno("Quit", "Do you really want to quit?"):
+        # the user clicked yes, let's close the window
+        root.destroy()
+
+
+root = tk.Tk()
+root.protocol('WM_DELETE_WINDOW', wanna_quit)
+root.mainloop()
+```
+
+## Summary
+
+- Tkinter comes with many handy dialogs functions. You can use the test
+  program in this tutorial to decide which function to use.
+- If you don't want a root window, you can create it and hide it
+  immediately with the `withdraw()` method.
+- Don't create multiple root windows. Use `tk.Toplevel` instead, it has
+  a handy `transient()` method too.
+- You can use `some_window.protocol('WM_DELETE_WINDOW', callback)` to
+  change what clicking the X button does. You can close the window with
+  the `destroy()` method.

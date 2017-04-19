@@ -68,14 +68,6 @@ The root window is the main window of our program. In this case, it's
 the only window that our program creates. Tkinter starts Tcl when you
 create the root window.
 
-Don't create multiple root windows. Some things in tkinter use a root
-window implicitly, and you can't be sure about which root window they
-use if you create multiple root windows. We'll create multiple windows
-with `tk.Toplevel` later.
-
-**TODO:** turn "later" into a link, or move all of this "one root only"
-stuff somewhere else?
-
 ```python
 label = tk.Label(root, text="Hello World!")
 ```
@@ -229,8 +221,8 @@ You'll find the manual pages useful later in this tutorial.
 
 This tutorial contains links to the manual pages, like this
 [label(3tk)](https://www.tcl.tk/man/tcl/TkCmd/label.htm) link. There's
-also a list of the manual pages
-[here](https://www.tcl.tk/man/tcl/TkCmd/contents.htm).
+also [a list of the manual
+pages](https://www.tcl.tk/man/tcl/TkCmd/contents.htm).
 
 If you are using Linux and you want to read the manual pages on a
 terminal, you can also install Tk's manual pages using your package
@@ -252,7 +244,7 @@ man 3tk label
 - Tkinter is an easy way to write cross-platform GUIs.
 - Now you should have tkinter installed and you should know how to use
   it on the `>>>` prompt.
-- Don't use star imports or create multiple root windows.
+- Don't use star imports.
 - You can set the values of Tk's options when creating widgets like
   `label = tk.Label(root, text="hello")`, and you can change them later
   using any of these ways:

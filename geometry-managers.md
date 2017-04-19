@@ -219,7 +219,10 @@ root.mainloop()
 
 The [place(3tk)](https://www.tcl.tk/man/tcl/TkCmd/place.htm) geometry
 manager can be used for absolute positioning with pixels, and that's
-almost always a bad idea. But place supports relative positioning too.
+almost always a bad idea. But place supports relative positioning too,
+and it's useful for things like message boxes. Tk also has [built-in
+message boxes](dialogs.md#built-in-dialogs) too, but place is useful if
+you want a customized message box.
 
 ```
 ,-----------------------------------.
