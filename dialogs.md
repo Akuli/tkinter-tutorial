@@ -179,20 +179,14 @@ is handy with bigger programs. I explained `functools.partial`
 read that if you haven't seen it before.
 
 Many of these functions can take other keyword arguments too. Most of
-them are explained in the Tk manual pages:
+them are explained in the Tk manual pages.
 
-| Python module             | Manual page                                                                       |
-| ------------------------- | --------------------------------------------------------------------------------- |
-| `tkinter.messagebox`      | [tk_messageBox(3tk)][messageBox]                                                  |
-| `tkinter.filedialog`      | [tk_getOpenFile(3tk)][getOpenFile] and [tk_chooseDirectory(3tk)][chooseDirectory] |
-| `tkinter.colorchooser`    | [tk_chooseColor(3tk)][chooseColor]                                                |
-| `tkinter.filedialog`      | No manual page, but the module seems to be from [this tutorial][effbottut].       |
-
-[messageBox]: https://www.tcl.tk/man/tcl/TkCmd/messageBox.htm
-[getOpenFile]: https://www.tcl.tk/man/tcl/TkCmd/getOpenFile.htm
-[chooseDirectory]: https://www.tcl.tk/man/tcl/TkCmd/chooseDirectory.htm
-[chooseColor]: https://www.tcl.tk/man/tcl/TkCmd/chooseColor.htm
-[effbottut]: http://effbot.org/tkinterbook/tkinter-dialog-windows.htm
+| Python module           | [Manual page](getting-started.md#manual-pages)                                                                  |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `tkinter.messagebox`    | [tk_messageBox(3tk)][tk_messageBox(3tk)]                                                                        |
+| `tkinter.filedialog`    | [tk_getOpenFile(3tk)][tk_getOpenFile(3tk)] and [tk_chooseDirectory(3tk)][tk_chooseDirectory(3tk)]               |
+| `tkinter.colorchooser`  | [tk_chooseColor(3tk)][tk_chooseColor(3tk)]                                                                      |
+| `tkinter.filedialog`    | No manual page, but the module seems to be from [this tutorial](https://www.tcl.tk/man/tcl/TkCmd/toplevel.htm). |
 
 ## Message dialogs without the root window
 
@@ -215,7 +209,7 @@ error message and exit before the main window is created.
 
 In these cases, we can create a root window and hide it with the
 `withdraw()` method. It's documented in the
-[wm(3tk)](https://www.tcl.tk/man/tcl/TkCmd/wm.htm) manual page; you can
+[wm(3tk)][wm(3tk)] manual page; you can
 scroll down to it or just press Ctrl+F and type "withdraw".
 
 [include]: # (examples/startup-error.py)
@@ -264,8 +258,8 @@ like message boxes need a root window, and if we create more than one
 root window, we can't be sure about which root window is used and we may
 get weird problems.
 
-The [toplevel(3tk)](https://www.tcl.tk/man/tcl/TkCmd/toplevel.htm)
-widget is a window that uses an existing root window:
+The [toplevel(3tk)][toplevel(3tk)] widget is a window that uses an
+existing root window:
 
 [include]: # (examples/toplevel.py)
 ```python
@@ -318,8 +312,7 @@ okbutton = tk.Button(dialog, text="OK", command=dialog.destroy)
 
 Many programs display a "do you want to save your changes?" dialog when
 the user closes the main window. We can also do this with tkinter using
-the `root.protocol()` method. It's documented in
-[wm(3tk)](https://www.tcl.tk/man/tcl/TkCmd/wm.htm).
+the `root.protocol()` method. It's documented in [wm(3tk)][wm(3tk)].
 
 [include]: # (examples/wanna-quit.py)
 ```python
@@ -349,3 +342,15 @@ root.mainloop()
 - You can use `some_window.protocol('WM_DELETE_WINDOW', callback)` to
   change what clicking the X button does. You can close the window with
   the `destroy()` method.
+
+[manpages]: # (start)
+[manpages]: # (end)
+
+[manpage list]: # (start)
+[tk_chooseColor(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/chooseColor.htm
+[tk_chooseDirectory(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/chooseDirectory.htm
+[tk_getOpenFile(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/getOpenFile.htm
+[tk_messageBox(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/messageBox.htm
+[toplevel(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/toplevel.htm
+[wm(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/wm.htm
+[manpage list]: # (end)

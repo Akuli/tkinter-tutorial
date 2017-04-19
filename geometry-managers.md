@@ -6,9 +6,8 @@ this tutorial we'll learn more about pack and other geometry managers.
 
 ## Pack
 
-The [pack(3tk)](https://www.tcl.tk/man/tcl/TkCmd/pack.htm) geometry
-manager is really simple and easy to use. Let's create a window like
-this with it:
+The [pack(3tk)][pack(3tk)] geometry manager is really simple and easy to
+use. Let's create a window like this with it:
 
 ```
 ,--------------------------------------------.
@@ -90,7 +89,7 @@ of the label.
 ## Grid
 
 Let's make a similar GUI as in the pack example, but with
-[grid(3tk)](https://www.tcl.tk/man/tcl/TkCmd/grid.htm) instead of pack.
+[grid(3tk)][grid(3tk)] instead of pack.
 
 [include]: # (examples/grid.py)
 ```python
@@ -217,12 +216,12 @@ root.mainloop()
 
 ## Place
 
-The [place(3tk)](https://www.tcl.tk/man/tcl/TkCmd/place.htm) geometry
-manager can be used for absolute positioning with pixels, and that's
-almost always a bad idea. But place supports relative positioning too,
-and it's useful for things like message boxes. Tk also has [built-in
-message boxes](dialogs.md#built-in-dialogs) too, but place is useful if
-you want a customized message box.
+The [place(3tk)][place(3tk)] geometry manager can be used for absolute
+positioning with pixels, and that's almost always a bad idea. But place
+supports relative positioning too, and it's useful for things like
+message boxes. Tk also has [built-in message
+boxes](dialogs.md#built-in-dialogs) too, but place is useful if you want
+a customized message box.
 
 ```
 ,-----------------------------------.
@@ -382,3 +381,9 @@ if __name__ == '__main__':
 - Don't use multiple geometry managers in one widget. You can mix
   different geometry managers with `tk.Frame` by using one geometry
   manager in each frame.
+
+[manpage list]: # (start)
+[grid(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/grid.htm
+[pack(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/pack.htm
+[place(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/place.htm
+[manpage list]: # (end)

@@ -220,8 +220,7 @@ languages, but Tk's manual pages are easy to apply to tkinter code.
 You'll find the manual pages useful later in this tutorial.
 
 This tutorial contains links to the manual pages, like this
-[label(3tk)](https://www.tcl.tk/man/tcl/TkCmd/label.htm) link. There's
-also [a list of the manual
+[label(3tk)][label(3tk)] link. There's also [a list of the manual
 pages](https://www.tcl.tk/man/tcl/TkCmd/contents.htm).
 
 If you are using Linux and you want to read the manual pages on a
@@ -263,3 +262,7 @@ man 3tk label
 - You can view all options and their values like
   `pprint.pprint(dict(some_widget))`. The options are explained in the
   manual pages.
+
+[manpage list]: # (start)
+[label(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/label.htm
+[manpage list]: # (end)

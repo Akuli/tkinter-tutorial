@@ -67,9 +67,11 @@ world example because I wanted to keep it as simple as possible.
 Run the program. If you click the button, nothing happens at all. That's
 boring!
 
-The button has a `command` [option](getting-started.md#widget-options),
-and if we set it to a function it will be ran when the button is
-clicked. This program prints hello every time we click its button:
+As usual, all possible [options](getting-started.md#widget-options) are
+listed in the [button(3tk)][button(3tk)] manual page. One of these
+options is `command`, and if we set it to a function it will be ran when
+the button is clicked. This program prints hello every time we click its
+button:
 
 [include]: # (examples/working-button.py)
 ```python
@@ -203,3 +205,7 @@ functions in loops can be
 - Button commands and other callbacks should not block. It means that
   they should run only a short time, about 0.1 seconds or less.
 - Use `functools.partial` when you need to pass arguments to callbacks.
+
+[manpage list]: # (start)
+[button(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/button.htm
+[manpage list]: # (end)
