@@ -26,6 +26,8 @@ root.mainloop()
 
 That's pretty cool. We can create a dialog with a label and an OK button
 and wait for the user to click the button with just one function call.
+[The callback is blocking](buttons.md#blocking-callback-functions), but
+it doesn't matter here because Tk handles dialogs specially.
 
 If you have used [buttons](buttons.md) before most of the code is pretty
 easy to understand. But a couple things need explaning:
@@ -62,10 +64,6 @@ AttributeError: module 'tkinter' has no attribute 'messagebox'
 Here Python didn't load `tkinter.messagebox` right away because many
 tkinter programs don't need it and `import tkinter` runs faster if
 Python doesn't need to load `messagebox.py` at all.
-
-Another thing to note that [the callback is
-blocking](buttons.md#blocking-callback-functions). It doesn't matter
-here because Tk handles message boxes specially.
 
 The `tkinter.messagebox` module supports many other things too, and
 there are other modules like it as well. Here's an example that
@@ -184,14 +182,18 @@ read that if you haven't seen it before.
 Many of these functions can take other keyword arguments too. Most of
 them are explained in the Tk manual pages:
 
-| Python module             | Manual page   |
-| ------------------------- | ------------- |
-| `tkinter.messagebox`      | [tk_messageBox(3tk)](https://www.tcl.tk/man/tcl/TkCmd/messageBox.htm) |
-| `tkinter.filedialog`      | [tk_getOpenFile(3tk)](https://www.tcl.tk/man/tcl/TkCmd/getOpenFile.htm) and
-                              [tk_chooseDirectory(3tk)](https://www.tcl.tk/man/tcl/TkCmd/chooseDirectory.htm) |
-| `tkinter.colorchooser`    | [tk_chooseColor(3tk)](https://www.tcl.tk/man/tcl/TkCmd/chooseColor.htm) |
-| `tkinter.filedialog`      | No manual page, but the module seems to be from [this
-                              tutorial](http://effbot.org/tkinterbook/tkinter-dialog-windows.htm). |
+| Python module             | Manual page                                                                       |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| `tkinter.messagebox`      | [tk_messageBox(3tk)][messageBox]                                                  |
+| `tkinter.filedialog`      | [tk_getOpenFile(3tk)][getOpenFile] and [tk_chooseDirectory(3tk)][chooseDirectory] |
+| `tkinter.colorchooser`    | [tk_chooseColor(3tk)][chooseColor]                                                |
+| `tkinter.filedialog`      | No manual page, but the module seems to be from [this tutorial][effbottut].       |
+
+[messageBox]: https://www.tcl.tk/man/tcl/TkCmd/messageBox.htm
+[getOpenFile]: https://www.tcl.tk/man/tcl/TkCmd/getOpenFile.htm
+[chooseDirectory]: https://www.tcl.tk/man/tcl/TkCmd/chooseDirectory.htm
+[chooseColor]: https://www.tcl.tk/man/tcl/TkCmd/chooseColor.htm
+[effbottut]: http://effbot.org/tkinterbook/tkinter-dialog-windows.htm
 
 ## Message dialogs without the root window
 
