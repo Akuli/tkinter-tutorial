@@ -73,7 +73,7 @@ which function to use.
 Note that many of these functions return None if you close the dialog
 using the X button in the corner.
 
-[include]: # (examples/many-msgboxes.py)
+[include]: # (examples/dialog-tester.py)
 ```python
 import functools
 import tkinter as tk
