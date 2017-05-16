@@ -80,10 +80,10 @@ import tkinter as tk
 from tkinter import messagebox, filedialog, simpledialog, colorchooser
 
 
-class DemoLabelFrame(tk.LabelFrame):
+class Demo:
 
     def __init__(self, root, modulename):
-        super().__init__(root, text=("tkinter." + modulename))
+        self.frame = tk.LabelFrame(root, text=("tkinter." + modulename))
         self.modulename = modulename
 
     # this makes buttons that demonstrate messagebox functions
@@ -104,7 +104,7 @@ class DemoLabelFrame(tk.LabelFrame):
 
         callback = functools.partial(self.on_click, call_string,
                                      function, args, kwargs)
-        button = tk.Button(self, text=functionname, command=callback)
+        button = tk.Button(self.frame, text=functionname, command=callback)
         button.pack()
 
     def on_click(self, call_string, function, args, kwargs):
@@ -115,57 +115,57 @@ class DemoLabelFrame(tk.LabelFrame):
 
 root = tk.Tk()
 
-messageboxframe = DemoLabelFrame(root, "messagebox")
-messageboxframe.add_button(
+msgboxdemo = Demo(root, "messagebox")
+msgboxdemo.add_button(
     "showinfo", messagebox.showinfo,
     ["Important Message", "Hello World!"])
-messageboxframe.add_button(
+msgboxdemo.add_button(
     "showwarning", messagebox.showwarning,
     ["Warny Warning", "This may cause more problems."])
-messageboxframe.add_button(
+msgboxdemo.add_button(
     "showerror", messagebox.showerror,
     ["Fatal Error", "Something went wrong :("])
-messageboxframe.add_button(
+msgboxdemo.add_button(
     "askyesno", messagebox.askyesno,
     ["Important Question", "Do you like this?"])
-messageboxframe.add_button(
+msgboxdemo.add_button(
     "askyesnocancel", messagebox.askyesnocancel,
     ["Important Question", "Do you like this?"])
-messageboxframe.add_button(
+msgboxdemo.add_button(
     "askokcancel", messagebox.askokcancel,
     ["Stupid Question", "Do you really want to do this?"])
-messageboxframe.add_button(
+msgboxdemo.add_button(
     "askyesnocancel", messagebox.askyesnocancel,
     ["Save Changes?", "Do you want to save your changes before quitting?"])
 
-filedialogframe = DemoLabelFrame(root, "filedialog")
-filedialogframe.add_button(
+filedialogdemo = Demo(root, "filedialog")
+filedialogdemo.add_button(
     "askopenfilename", filedialog.askopenfilename,
     kwargs={'title': "Open File"})
-filedialogframe.add_button(
+filedialogdemo.add_button(
     "asksaveasfilename", filedialog.asksaveasfilename,
     kwargs={'title': "Save As"})
 
-simpledialogframe = DemoLabelFrame(root, "simpledialog")
-simpledialogframe.add_button(
+simpledialogdemo = Demo(root, "simpledialog")
+simpledialogdemo.add_button(
     "askfloat", simpledialog.askfloat,
     ["Pi Question", "What's the value of pi?"])
-simpledialogframe.add_button(
+simpledialogdemo.add_button(
     "askinteger", simpledialog.askinteger,
     ["Computer Question", "How many computers do you have?"])
-simpledialogframe.add_button(
+simpledialogdemo.add_button(
     "askstring", simpledialog.askstring,
     ["Editor Question", "What is your favorite editor?"])
 
-colorchooserframe = DemoLabelFrame(root, "colorchooser")
-colorchooserframe.add_button(
+colorchooserdemo = Demo(root, "colorchooser")
+colorchooserdemo.add_button(
     "askcolor", colorchooser.askcolor,
     kwargs={'title': "Choose a Color"})
 
-messageboxframe.grid(row=0, column=0, rowspan=3)
-filedialogframe.grid(row=0, column=1)
-simpledialogframe.grid(row=1, column=1)
-colorchooserframe.grid(row=2, column=1)
+msgboxdemo.frame.grid(row=0, column=0, rowspan=3)
+filedialogdemo.frame.grid(row=0, column=1)
+simpledialogdemo.frame.grid(row=1, column=1)
+colorchooserdemo.frame.grid(row=2, column=1)
 
 root.title("Dialog Tester")
 root.resizable(False, False)
