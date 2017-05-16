@@ -67,8 +67,8 @@ Python doesn't need to load `messagebox.py` at all.
 The `tkinter.messagebox` module supports many other things too, and
 there are other modules like it as well. Here's an example that
 demonstrates most of the things that are possible. You can use this
-program when you need to use a dialog so you don't remember which
-function to use.
+program when you need to use a dialog so you don't need to remember
+which function to use.
 
 Note that many of these functions return None if you close the dialog
 using the X button in the corner.
