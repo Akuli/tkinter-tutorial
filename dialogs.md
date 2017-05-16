@@ -208,9 +208,9 @@ any other windows. For example, our program might need to display an
 error message and exit before the main window is created.
 
 In these cases, we can create a root window and hide it with the
-`withdraw()` method. It's documented in the
-[wm(3tk)][wm(3tk)] manual page; you can
-scroll down to it or just press Ctrl+F and type "withdraw".
+`withdraw()` method. It's documented in the [wm(3tk)][wm(3tk)] manual
+page as `wm withdraw`; you can scroll down to it or just press Ctrl+F
+and type "withdraw".
 
 [include]: # (examples/startup-error.py)
 ```python
@@ -312,7 +312,8 @@ okbutton = tk.Button(dialog, text="OK", command=dialog.destroy)
 
 Many programs display a "do you want to save your changes?" dialog when
 the user closes the main window. We can also do this with tkinter using
-the `root.protocol()` method. It's documented in [wm(3tk)][wm(3tk)].
+the `root.protocol()` method. It's documented in [wm(3tk)][wm(3tk)] as
+`wm protocol`.
 
 [include]: # (examples/wanna-quit.py)
 ```python
