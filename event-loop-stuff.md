@@ -94,7 +94,7 @@ button.pack()
 root.mainloop()
 ```
 
-That's pretty cool. It's, a blocking function, but it doesn't freeze our
+That's pretty cool. It's a blocking function, but it doesn't freeze our
 GUI like [this example](buttons.md#blocking-callback-functions) did.
 
 As usual, great power comes with great responsibility. Tkinter isn't

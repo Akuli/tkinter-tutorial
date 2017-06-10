@@ -179,14 +179,16 @@ is handy with bigger programs. I explained `functools.partial`
 read that if you haven't seen it before.
 
 Many of these functions can take other keyword arguments too. Most of
-them are explained in the Tk manual pages.
+them are explained in [the manual pages](getting-started.md#manual-pages).
 
-| Python module           | [Manual page](getting-started.md#manual-pages)                                                                              |
+[comment]: # (tk_getSaveFile is also documented in tk_getOpenFile)
+
+| Python module           | Manual page                                                                                                                 |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `tkinter.messagebox`    | [tk_messageBox(3tk)][tk_messageBox(3tk)]                                                                                    |
 | `tkinter.filedialog`    | [tk_getOpenFile(3tk)][tk_getOpenFile(3tk)] and [tk_chooseDirectory(3tk)][tk_chooseDirectory(3tk)]                           |
 | `tkinter.colorchooser`  | [tk_chooseColor(3tk)][tk_chooseColor(3tk)]                                                                                  |
-| `tkinter.filedialog`    | No manual page, but the module seems to be from [this tutorial](http://effbot.org/tkinterbook/tkinter-dialog-windows.htm).  |
+| `tkinter.simpledialog`  | No manual page, but the module seems to be from [this tutorial](http://effbot.org/tkinterbook/tkinter-dialog-windows.htm).  |
 
 ## Message dialogs without the root window
 
@@ -208,8 +210,8 @@ any other windows. For example, our program might need to display an
 error message and exit before the main window is created.
 
 In these cases, we can create a root window and hide it with the
-`withdraw()` method. It's documented in the [wm(3tk)][wm(3tk)] manual
-page as `wm withdraw`; you can scroll down to it or just press Ctrl+F
+`withdraw()` method. It's documented in [wm(3tk)][wm(3tk)]
+as `wm withdraw`; you can scroll down to it or just press Ctrl+F
 and type "withdraw".
 
 [include]: # (startup-error.py)
@@ -253,8 +255,7 @@ button.pack()
 root.mainloop()
 ```
 
-The problem is that we have two root windows at the same time. Things
-like message boxes need a root window, and if we create more than one
+Things like message boxes need a root window, and if we create more than one
 root window, we can't be sure about which root window is used and we may
 get weird problems.
 
@@ -311,8 +312,8 @@ You don't need to call this method if you want to let the user do other
 things while the dialog is showing.
 
 Clicking on the X button destroys the dialog, but it's also possible to
-destroy it with the `destroy()` method. This is useful for creating
-buttons that close the dialog:
+destroy it like `dialog.destroy()`. This is useful for creating buttons
+that close the dialog:
 
 ```python
 okbutton = tk.Button(dialog, text="OK", command=dialog.destroy)
