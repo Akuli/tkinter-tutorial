@@ -181,12 +181,12 @@ read that if you haven't seen it before.
 Many of these functions can take other keyword arguments too. Most of
 them are explained in the Tk manual pages.
 
-| Python module           | [Manual page](getting-started.md#manual-pages)                                                                  |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `tkinter.messagebox`    | [tk_messageBox(3tk)][tk_messageBox(3tk)]                                                                        |
-| `tkinter.filedialog`    | [tk_getOpenFile(3tk)][tk_getOpenFile(3tk)] and [tk_chooseDirectory(3tk)][tk_chooseDirectory(3tk)]               |
-| `tkinter.colorchooser`  | [tk_chooseColor(3tk)][tk_chooseColor(3tk)]                                                                      |
-| `tkinter.filedialog`    | No manual page, but the module seems to be from [this tutorial](https://www.tcl.tk/man/tcl/TkCmd/toplevel.htm). |
+| Python module           | [Manual page](getting-started.md#manual-pages)                                                                              |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `tkinter.messagebox`    | [tk_messageBox(3tk)][tk_messageBox(3tk)]                                                                                    |
+| `tkinter.filedialog`    | [tk_getOpenFile(3tk)][tk_getOpenFile(3tk)] and [tk_chooseDirectory(3tk)][tk_chooseDirectory(3tk)]                           |
+| `tkinter.colorchooser`  | [tk_chooseColor(3tk)][tk_chooseColor(3tk)]                                                                                  |
+| `tkinter.filedialog`    | No manual page, but the module seems to be from [this tutorial](http://effbot.org/tkinterbook/tkinter-dialog-windows.htm).  |
 
 ## Message dialogs without the root window
 
@@ -287,6 +287,14 @@ You probably understand how most of this code works, but there are a
 couple lines that need explanations:
 
 ```python
+dialog = tk.Toplevel()
+```
+
+The toplevel widget uses our root window even though we don't explicitly
+give it a root window. You can also do `tk.Toplevel(root)` if you like
+that more.
+
+```python
 dialog.transient(root)
 ```
 
@@ -299,6 +307,8 @@ dialog.wait_window()
 ```
 
 This is like `root.mainloop()`, it waits until the dialog is destroyed.
+You don't need to call this method if you want to let the user do other
+things while the dialog is showing.
 
 Clicking on the X button destroys the dialog, but it's also possible to
 destroy it with the `destroy()` method. This is useful for creating
@@ -343,9 +353,6 @@ root.mainloop()
 - You can use `some_window.protocol('WM_DELETE_WINDOW', callback)` to
   change what clicking the X button does. You can close the window with
   the `destroy()` method.
-
-[manpages]: # (start)
-[manpages]: # (end)
 
 [manpage list]: # (start)
 [tk_chooseColor(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/chooseColor.htm
