@@ -207,7 +207,7 @@ root.mainloop()
 ```
 
 Checking if there's something on the queue every 0.1 seconds may seem a
-bit weird, but unfortunately there's not a better way to do it. If
+bit weird, but unfortunately there's no better way to do it. If
 checking the queue every 0.1 seconds is too slow for your program, you
 can use something like 50 milliseconds instead of 100.
 
