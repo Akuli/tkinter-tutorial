@@ -29,7 +29,7 @@ use. Let's create a window like this with it:
 
 Here's the code.
 
-[include]: # (examples/pack.py)
+[include]: # (pack.py)
 ```python
 import tkinter as tk
 
@@ -91,7 +91,7 @@ of the label.
 Let's make a similar GUI as in the pack example, but with
 [grid(3tk)][grid(3tk)] instead of pack.
 
-[include]: # (examples/grid.py)
+[include]: # (grid.py)
 ```python
 import tkinter as tk
 
@@ -178,7 +178,7 @@ Here's another, more advanced grid example:
 Something like this would be almost impossible to do with pack, but it's
 easy with grid:
 
-[include]: # (examples/calculator.py)
+[include]: # (calculator.py)
 ```python
 import tkinter as tk
 
@@ -219,7 +219,7 @@ root.mainloop()
 The [place(3tk)][place(3tk)] geometry manager can be used for absolute
 positioning with pixels, and that's almost always a bad idea. But place
 supports relative positioning too, and it's useful for things like
-message boxes. Tk also has [built-in message
+message boxes. Tk has [built-in message
 boxes](dialogs.md#built-in-dialogs) too, but place is useful if you want
 a customized message box.
 
@@ -242,7 +242,7 @@ a customized message box.
 
 Here's the code:
 
-[include]: # (examples/place.py)
+[include]: # (place.py)
 ```python
 import tkinter as tk
 
@@ -307,7 +307,7 @@ different geometry manager.
 For example, this program uses pack, grid and place, but in separate
 frames:
 
-[include]: # (examples/frames.py)
+[include]: # (frames.py)
 ```python
 import tkinter as tk
 

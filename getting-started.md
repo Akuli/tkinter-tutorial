@@ -20,7 +20,7 @@ sudo apt install python3-tk
 
 That's enough talking. Let's do the classic Hello World program :)
 
-[include]: # (examples/hello-world.py)
+[include]: # (hello-world.py)
 ```python
 import tkinter as tk
 

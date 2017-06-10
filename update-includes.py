@@ -3,7 +3,7 @@
 
 This script allows you to write markdown like this:
 
-    [include]: # (some/cool/file.py)
+    [include]: # (thing.py)
     ```python
     ```
 
@@ -13,12 +13,13 @@ won't be visible when the markdown is rendered.
 Then you can run this script, and the markdown will be replaced with
 this:
 
-    [include]: # (some/cool/file.py)
+    [include]: # (thing.py)
     ```python
-    here's the content of some/cool/file.py
+    here's the content of examples/name_of_the_markdown_file/thing.py
     ```
 """
 
+import functools
 import glob
 import os
 import re
@@ -32,8 +33,8 @@ _INCLUDE_REGEX = (
 )
 
 
-def replacer(match):
-    path = match.group(1).replace('/', os.sep)
+def replacer(filename_without_ext, match):
+    path = os.path.join('examples', filename_without_ext, match.group(1))
     with open(path, 'r') as file:
         file_content = file.read()
 
@@ -52,7 +53,12 @@ def main():
         with open(filename, 'r') as file:
             current = file.read()
 
-        fixed = re.sub(_INCLUDE_REGEX, replacer, current, flags=re.MULTILINE)
+        # os.path.splitext(filename)[0] is the filename without an extension
+        the_replacer = functools.partial(
+            replacer, os.path.splitext(filename)[0])
+        fixed = re.sub(_INCLUDE_REGEX, the_replacer, current,
+                       flags=re.MULTILINE)
+
         if current == fixed:
             print("Already OK:", filename)
         else:

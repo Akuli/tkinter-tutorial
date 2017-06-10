@@ -35,7 +35,7 @@ freezes.](buttons.md#blocking-callback-functions)
 For example, this program displays a simple clock with after callbacks and
 [time.asctime](https://docs.python.org/3/library/time.html#time.asctime):
 
-[include]: # (examples/timeout-clock.py)
+[include]: # (timeout-clock.py)
 ```python
 import tkinter as tk
 import time
@@ -67,7 +67,7 @@ something that blocks. We can do this with [the threading
 module](https://docs.python.org/3/library/threading.html). Here's a
 minimal example:
 
-[include]: # (examples/printy-threads.py)
+[include]: # (printy-threads.py)
 ```python
 import threading
 import time
@@ -158,7 +158,7 @@ The thread puts something on the queue, and then an [after
 callback](#after-callbacks) gets it from the queue with `block=False`.
 Like this:
 
-[include]: # (examples/thread2tk.py)
+[include]: # (thread2tk.py)
 ```python
 import queue
 import threading
@@ -221,7 +221,7 @@ We can also use queues to get things from tkinter to blocking threads.
 Here we put stuff to the queue in tkinter and get in a thread, so we
 don't need `block=False`. Here's an example:
 
-[include]: # (examples/tk2thread-broken.py)
+[include]: # (tk2thread-broken.py)
 ```python
 import queue
 import threading
@@ -258,7 +258,7 @@ running a `while True`. To fix that, we need to modify our
 `thread_target` to stop when we put None on the queue, and then put a
 None to the queue when `root.mainloop` has completed. Like this:
 
-[include]: # (examples/tk2thread.py)
+[include]: # (tk2thread.py)
 ```python
 import queue
 import threading

@@ -26,7 +26,7 @@ we'll add a button that we can click.
 
 Here's the code:
 
-[include]: # (examples/boring-button.py)
+[include]: # (boring-button.py)
 ```python
 import tkinter as tk
 
@@ -73,7 +73,7 @@ options is `command`, and if we set it to a function it will be ran when
 the button is clicked. This program prints hello every time we click its
 button:
 
-[include]: # (examples/working-button.py)
+[include]: # (working-button.py)
 ```python
 import tkinter as tk
 
@@ -102,7 +102,7 @@ In tkinter and other GUI toolkits, all callbacks should run about 0.1
 seconds or less. Let's make a callback function that runs for 5 seconds
 and see what happens:
 
-[include]: # (examples/stupid-callback.py)
+[include]: # (stupid-callback.py)
 ```python
 import time
 import tkinter as tk
@@ -173,7 +173,7 @@ hello 1 2 3
 
 So we can write code like this:
 
-[include]: # (examples/many-buttons.py)
+[include]: # (many-buttons.py)
 ```python
 import functools
 import tkinter as tk

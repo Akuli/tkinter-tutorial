@@ -8,7 +8,7 @@ But that's boring! We want to display a nice message box instead.
 Tkinter comes with many useful functions for making message dialogs.
 Here's a simple example:
 
-[include]: # (examples/hello-world-msgbox.py)
+[include]: # (hello-world.py)
 ```python
 import tkinter as tk
 from tkinter import messagebox
@@ -73,7 +73,7 @@ which function to use.
 Note that many of these functions return None if you close the dialog
 using the X button in the corner.
 
-[include]: # (examples/dialog-tester.py)
+[include]: # (dialog-tester.py)
 ```python
 import functools
 import tkinter as tk
@@ -212,7 +212,7 @@ In these cases, we can create a root window and hide it with the
 page as `wm withdraw`; you can scroll down to it or just press Ctrl+F
 and type "withdraw".
 
-[include]: # (examples/startup-error.py)
+[include]: # (startup-error.py)
 ```python
 import tkinter as tk
 from tkinter import messagebox
@@ -261,7 +261,7 @@ get weird problems.
 The [toplevel(3tk)][toplevel(3tk)] widget is a window that uses an
 existing root window:
 
-[include]: # (examples/toplevel.py)
+[include]: # (toplevel.py)
 ```python
 import tkinter as tk
 
@@ -325,7 +325,7 @@ the user closes the main window. We can also do this with tkinter using
 the `root.protocol()` method. It's documented in [wm(3tk)][wm(3tk)] as
 `wm protocol`.
 
-[include]: # (examples/wanna-quit.py)
+[include]: # (wanna-quit.py)
 ```python
 import tkinter as tk
 from tkinter import messagebox
