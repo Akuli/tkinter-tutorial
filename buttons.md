@@ -136,7 +136,7 @@ limited to button commands, all tkinter callbacks should take at most
 0.1 seconds.
 
 Doing multiple things at the same time is an advanced topic, and we'll
-learn more about it [later](eventloopstuff.md).
+learn more about it [later](event-loop-stuff.md).
 
 ## Passing arguments to callback functions
 
