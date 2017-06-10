@@ -6,10 +6,6 @@ import tkinter as tk
 the_queue = queue.Queue()
 
 
-def after_callback():
-    the_queue.put("hello")
-
-
 def thread_target():
     while True:
         message = the_queue.get()
