@@ -1,4 +1,4 @@
-# Doing more than one thing at a time
+# Event Loop and Threads
 
 In the button chapter [we used time.sleep in a callback
 function](buttons.md#blocking-callback-functions), and it froze

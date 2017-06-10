@@ -47,3 +47,5 @@ players can be written in tkinter.
 2. [Buttons](buttons.md)
 3. [Geometry Managers](geometry-managers.md)
 4. [Dialogs](dialogs.md)
+5. There will be more stuff here later...
+6. [Event Loop and Threads](event-loop-stuff.md)
