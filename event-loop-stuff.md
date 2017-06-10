@@ -22,15 +22,19 @@ more than 0.01 seconds or so, it's also **blocking**. For example,
 `time.sleep` and `print` are both synchonous, but only `time.sleep` is
 blocking.
 
+If we tell our asynchronous Tk event loop to run `time.sleep(5)`, then
+it can't do anything else while it's sleeping. That's why everything
+freezes when we make a button that calls `time.sleep(5)` when it's
+clicked.
+
 ## After Callbacks
 
 The `after` method is documented in [after(3tcl)][after(3tcl)], and it's
 an easy way to run stuff in Tk's main loop. All widgets have this
-method, and it doesn't matter which widget's methods you use.
-`any_widget.after(milliseconds, callback)` runs `callback()` in Tk's
-mainloop after waiting for the given number of milliseconds. [The
-callback must not block, otherwise everything
-freezes.](buttons.md#blocking-callback-functions)
+method, and it doesn't matter which widget's `after` method you use.
+`any_widget.after(milliseconds, callback)` runs `callback()` after
+waiting for the given number of milliseconds. The callback runs in Tk's
+mainloop, so it must not block.
 
 For example, this program displays a simple clock with after callbacks and
 [time.asctime](https://docs.python.org/3/library/time.html#time.asctime):
