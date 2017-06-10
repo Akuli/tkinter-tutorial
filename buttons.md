@@ -135,10 +135,8 @@ a time. Tkinter can't run our `ok_callback` while it's running
 limited to button commands, all tkinter callbacks should take at most
 0.1 seconds.
 
-Doing multiple things at the same time is an advanced topic, and I'll
-write more about it later.
-
-**TODO:** write more about it some day
+Doing multiple things at the same time is an advanced topic, and we'll
+learn more about it [later](eventloopstuff.md).
 
 ## Passing arguments to callback functions
 

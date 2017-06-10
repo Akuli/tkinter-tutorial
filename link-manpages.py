@@ -11,31 +11,34 @@ import glob
 import re
 
 
-# these don't conflict with Python code examples because 3tk is invalid
-# syntax in Python
-LINK_REGEX = re.compile(r'\[.*?\]\[(\w+\(3tk\))\]')
+# these shouldn't conflict with Python code examples because 3tk and
+# 3tcl are invalid syntax in Python
+# this matches [anything][any_word(3tcl or 3tk)]
+LINK_REGEX = re.compile(r'\[.*?\]\[(\w+\(3(?:tk|tcl)\))\]')
 LINK_LIST_REGEX = re.compile(
-    r'^\[manpage list\]: # \(start\)$'
-    r'[\S\s]*?'
+    r'^\[manpage list\]: # \(start\)$' +
+    r'[\S\s]*?' +
     r'^\[manpage list\]: # \(end\)$', re.MULTILINE)
 
 
-# we need a dict because these aren't always TEMPLATE % manpage_name
+# we need a dict because these aren't always SOME_TEMPLATE % manpagename
 # this also helps with catching spelling errors because now lable(3tk)
 # causes a KeyError
-TEMPLATE = 'https://www.tcl.tk/man/tcl/TkCmd/%s.htm'
+TK_TEMPLATE = 'https://www.tcl.tk/man/tcl/TkCmd/%s.htm'
+TCL_TEMPLATE = 'https://www.tcl.tk/man/tcl/TclCmd/%s.htm'
 URLS = {
-    'button(3tk)': TEMPLATE % 'button',
-    'grid(3tk)': TEMPLATE % 'grid',
-    'label(3tk)': TEMPLATE % 'label',
-    'pack(3tk)': TEMPLATE % 'pack',
-    'place(3tk)': TEMPLATE % 'place',
-    'tk_chooseColor(3tk)': TEMPLATE % 'chooseColor',
-    'tk_chooseDirectory(3tk)': TEMPLATE % 'chooseDirectory',
-    'tk_getOpenFile(3tk)': TEMPLATE % 'getOpenFile',
-    'tk_messageBox(3tk)': TEMPLATE % 'messageBox',
-    'toplevel(3tk)': TEMPLATE % 'toplevel',
-    'wm(3tk)': TEMPLATE % 'wm',
+    'button(3tk)': TK_TEMPLATE % 'button',
+    'grid(3tk)': TK_TEMPLATE % 'grid',
+    'label(3tk)': TK_TEMPLATE % 'label',
+    'pack(3tk)': TK_TEMPLATE % 'pack',
+    'place(3tk)': TK_TEMPLATE % 'place',
+    'tk_chooseColor(3tk)': TK_TEMPLATE % 'chooseColor',
+    'tk_chooseDirectory(3tk)': TK_TEMPLATE % 'chooseDirectory',
+    'tk_getOpenFile(3tk)': TK_TEMPLATE % 'getOpenFile',
+    'tk_messageBox(3tk)': TK_TEMPLATE % 'messageBox',
+    'toplevel(3tk)': TK_TEMPLATE % 'toplevel',
+    'wm(3tk)': TK_TEMPLATE % 'wm',
+    'after(3tcl)': TCL_TEMPLATE % 'after',
 }
 
 
