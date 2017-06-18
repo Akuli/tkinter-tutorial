@@ -3,8 +3,8 @@ import time
 import tkinter as tk
 
 
-# in a real program, we would have some other blocking thing than
-# time.sleep and we would use after callbacks if we really want to sleep
+# in a real program it's best to use after callbacks instead of
+# sleeping in a thread, this is just an example
 def blocking_function():
     print("blocking function starts")
     time.sleep(1)

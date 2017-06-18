@@ -2,7 +2,7 @@ import tkinter as tk
 import time
 
 
-# this must not block
+# this must return soon after starting this
 def change_text():
     label['text'] = time.asctime()
 

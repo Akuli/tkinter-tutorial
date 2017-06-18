@@ -10,22 +10,18 @@ learn to use things like `time.sleep` properly with your tkinter programs.
 Before we dive into other stuff we need to understand what our
 `root.mainloop()` calls at the ends of our programs are doing.
 
-When a tkinter program is running, Tk needs to do multiple different
-things at the same time. It does that by breaking everything into tiny
-pieces. So it does a little bit of something, then it does a little bit
-of something else, then comes back to the first thing and so on. This is
+When a tkinter program is running, Tk needs to process different kinds
+of events. For example, clicking on a button generates an event, and the
+main loop must make the button look like it's pressed down and run our
+callback. Tk and most other GUI toolkits do that by simply checking for
+any new events over and over again, many times every second. This is
 called an **event loop** or **main loop**.
 
-More fancy words: things that run bit by bit are **asynchronous**, and
-other things are **synchronous**. If a synchronous function runs for
-more than 0.01 seconds or so, it's also **blocking**. For example,
-`time.sleep` and `print` are both synchonous, but only `time.sleep` is
-blocking.
-
-If we tell our asynchronous Tk event loop to run `time.sleep(5)`, then
-it can't do anything else while it's sleeping. That's why everything
-freezes when we make a button that calls `time.sleep(5)` when it's
-clicked.
+Button callbacks are also ran in the main loop. So if our button
+callback takes 5 seconds to run, the main loop can't proess other events
+while it's running. For example, it can't close the root window when we
+try to close it. That's why everything froze with our `time.sleep(5)`
+callback.
 
 ## After Callbacks
 
@@ -34,7 +30,7 @@ an easy way to run stuff in Tk's main loop. All widgets have this
 method, and it doesn't matter which widget's `after` method you use.
 `any_widget.after(milliseconds, callback)` runs `callback()` after
 waiting for the given number of milliseconds. The callback runs in Tk's
-mainloop, so it must not block.
+mainloop, so it must not take a long time to run.
 
 For example, this program displays a simple clock with after callbacks and
 [time.asctime](https://docs.python.org/3/library/time.html#time.asctime):
@@ -45,7 +41,7 @@ import tkinter as tk
 import time
 
 
-# this must not block
+# this must return soon after starting this
 def change_text():
     label['text'] = time.asctime()
 
@@ -66,8 +62,8 @@ root.mainloop()
 
 ## Threads
 
-So far we have avoided blocking in every possible way, but now we'll run
-something that blocks. We can do this with [the threading
+So far we have avoided using functions that take a long time to complete
+in tkinter programs, but now we'll do that with [the threading
 module](https://docs.python.org/3/library/threading.html). Here's a
 minimal example:
 
@@ -78,8 +74,8 @@ import time
 import tkinter as tk
 
 
-# in a real program, we would have some other blocking thing than
-# time.sleep and we would use after callbacks if we really want to sleep
+# in a real program it's best to use after callbacks instead of
+# sleeping in a thread, this is just an example
 def blocking_function():
     print("blocking function starts")
     time.sleep(1)
@@ -98,8 +94,8 @@ button.pack()
 root.mainloop()
 ```
 
-That's pretty cool. It's a blocking function, but it doesn't freeze our
-GUI like [this example](buttons.md#blocking-callback-functions) did.
+That's pretty cool. The function runs for about a second, but it doesn't
+freeze our GUI.
 
 As usual, great power comes with great responsibility. Tkinter isn't
 thread-safe, so **we must not do any tkinter stuff in threads**. Don't
@@ -107,15 +103,16 @@ do anything like `label['text'] = 'hi'` or even `print(label['text'])`.
 It may kind of work for you, but it will make different kinds of weird
 problems on some operating systems.
 
-Think about it like this: usually we can do stuff with tkinter but not
-with blocking functions, but in threads we can do stuff with blocking
-functions but not with tkinter. So we can block or use tkinter, but not
-both in the same place.
+Think about it like this: in tkinter callbacks we can do stuff with
+tkinter and we need to return as soon as possible, but in threads we can
+do stuff that takes a long time to run but we must not touch tkinter. So
+we can use tkinter or run stuff that takes a long time, but not both in
+the same place.
 
 ### Moving stuff from threads to tkinter
 
-The blocking thread world and the asynchronous tkinter world must be
-separated from each other, but we can move stuff between them with
+The thread world and tkinter's mainloop world must be separated from
+each other, but we can move stuff between them with
 [queues](https://docs.python.org/3/library/queue.html). They work like
 this:
 
@@ -128,7 +125,7 @@ this:
 'hello'
 >>> the_queue.get()
 'lol'
->>> the_queue.get()      # this blocks forever, press Ctrl+C to interrupt
+>>> the_queue.get()      # this waits forever, press Ctrl+C to interrupt
 Traceback (most recent call last):
   ...
 KeyboardInterrupt
@@ -153,9 +150,9 @@ There are a few things worth noting:
 - We are not using a list or
   [collections.deque](https://docs.python.org/3/library/collections.html#collections.deque)
   for this. Queues work better with threads.
-- If the queue is empty, `some_queue.get()` blocks until we put
-  something on the queue or we interrupt it. If we pass `block=False` it
-  raises a `queue.Empty` exception instead, and never blocks.
+- If the queue is empty, `some_queue.get()` waits until we put something
+  on the queue or we interrupt it. If we pass `block=False` it raises a
+  `queue.Empty` exception instead, and never waits for anything.
 
 Usually I need queues for getting stuff from threads back to tkinter.
 The thread puts something on the queue, and then an [after
@@ -211,7 +208,7 @@ root.mainloop()
 ```
 
 Checking if there's something on the queue every 0.1 seconds may seem a
-bit weird, but unfortunately there's no better way to do it. If
+bit weird, but unfortunately there's no better way to do this. If
 checking the queue every 0.1 seconds is too slow for your program, you
 can use something like 50 milliseconds instead of 100.
 
@@ -221,8 +218,8 @@ then do things like `if message is not STOP`.
 
 ### Moving stuff from tkinter to threads
 
-We can also use queues to get things from tkinter to blocking threads.
-Here we put stuff to the queue in tkinter and get in a thread, so we
+We can also use queues to get things from tkinter to threads. Here we
+put stuff to a queue in tkinter and wait for it in the thread, so we
 don't need `block=False`. Here's an example:
 
 [include]: # (tk2thread-broken.py)
