@@ -103,9 +103,9 @@ doesn't work that well on all platforms. Everything works great on
 Linux, but on Windows the root window is unresponsive when
 `root.mainloop()` is not running.
 
-Try the hello world example to the `>>>` prompt, just type it there line
-by line. It's really cool to see the widgets appearing on the screen one
-by one as you type. If this works on your system, that's great! If not,
+Try the hello world example on the `>>>` prompt, just type it there line
+by line. It's really cool to see the widgets appearing on the screen as
+you type. If this works on your system, that's great! If not,
 you can run `root.update()` regularly to make it display your changes.
 
 ## Print issues
