@@ -294,6 +294,20 @@ root.mainloop()
 the_queue.put(None)
 ```
 
+## Summary
+
+- Tk's main loop checks for new events many times every second and does
+  something when new events arrive.
+- If we tell the main loop to run something like `time.sleep(5)` it
+  can't do other things at the same time and everything freezes. Don't
+  do that.
+- After callbacks tell the main loop to do something after some number
+  of milliseconds. You can use them for running something repeatedly by
+  calling the after method again in the callback.
+- If you need to run something that takes a long time, use threads.
+  Don't do tkinter stuff in threads, use queues for moving stuff between
+  the mainloop and the thread instead.
+
 [manpage list]: # (start)
 [after(3tcl)]: https://www.tcl.tk/man/tcl/TclCmd/after.htm
 [manpage list]: # (end)
