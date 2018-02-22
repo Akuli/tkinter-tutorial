@@ -139,7 +139,7 @@ The only way to do something when `is_alive()` returns False is to just check
 clock repeatedly. Here's an example:
 
 [include]: # (is_alive.py)
-```python3
+```python
 import threading
 import time
 import tkinter as tk
