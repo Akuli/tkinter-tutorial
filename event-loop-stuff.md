@@ -60,7 +60,7 @@ root.geometry('200x200')
 root.mainloop()
 ```
 
-## Threads
+## Basic Thread Stuff
 
 So far we have avoided using functions that take a long time to complete
 in tkinter programs, but now we'll do that with [the threading
@@ -109,7 +109,71 @@ do stuff that takes a long time to run but we must not touch tkinter. So
 we can use tkinter or run stuff that takes a long time, but not both in
 the same place.
 
-### Moving stuff from threads to tkinter
+It's also possible to pass arguments to after callbacks:
+
+```python3
+# run print('hello') after 1 second
+any_widget.after(1000, print, 'hello')
+
+# run foo(bar, biz, baz) after 3 seconds
+any_widget.after(3000, foo, bar, biz, baz)
+```
+
+Threads can handle arguments too, but they do it slightly differently:
+
+```python3
+# run foo(bar, biz, baz) in a thread
+thread = threading.Thread(target=foo, args=[bar, biz, baz])
+thread.start()
+```
+
+## is_alive
+
+Thread objects have an `is_alive()` method that returns True if the thread is
+still running. It's useful for doing stuff in tkinter when the thread has
+finished. We'll talk about moving more information from the thread back to
+tkinter [later](#moving-stuff-from-threads-to-tkinter).
+
+The only way to do something when `is_alive()` returns False is to just check
+`is_alive()` repeatedly with after callbacks, kind of like how we updated our
+clock repeatedly. Here's an example:
+
+[include]: # (is_alive.py)
+```python3
+import threading
+import time
+import tkinter as tk
+from tkinter import messagebox
+
+
+def do_slow_stuff():
+    for i in range(1, 5):
+        print(i, '...')
+        time.sleep(1)
+    print('done!')
+
+
+def check_if_ready(thread):
+    print('check')
+    if thread.is_alive():
+        # not ready yet, run the check again soon
+        root.after(200, check_if_ready, thread)
+    else:
+        messagebox.showinfo("Ready", "I'm ready!")
+
+
+def start_doing_slow_stuff():
+    thread = threading.Thread(target=do_slow_stuff)
+    thread.start()
+    root.after(200, check_if_ready, thread)
+
+
+root = tk.Tk()
+tk.Button(root, text="Start", command=start_doing_slow_stuff).pack()
+root.mainloop()
+```
+
+## Moving stuff from threads to tkinter
 
 The thread world and tkinter's mainloop world must be separated from
 each other, but we can move stuff between them with
@@ -216,7 +280,7 @@ Of course, you can use any other value you want instead of None. For
 example, you could add `STOP = object()` to the top of the program, and
 then do things like `if message is not STOP`.
 
-### Moving stuff from tkinter to threads
+## Moving stuff from tkinter to threads
 
 We can also use queues to get things from tkinter to threads. Here we
 put stuff to a queue in tkinter and wait for it in the thread, so we
