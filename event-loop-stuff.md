@@ -111,7 +111,7 @@ the same place.
 
 It's also possible to pass arguments to after callbacks:
 
-```python3
+```python
 # run print('hello') after 1 second
 any_widget.after(1000, print, 'hello')
 
@@ -121,7 +121,7 @@ any_widget.after(3000, foo, bar, biz, baz)
 
 Threads can handle arguments too, but they do it slightly differently:
 
-```python3
+```python
 # run foo(bar, biz, baz) in a thread
 thread = threading.Thread(target=foo, args=[bar, biz, baz])
 thread.start()
