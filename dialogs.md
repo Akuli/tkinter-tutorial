@@ -226,7 +226,8 @@ root.withdraw()
 messagebox.showerror("Fatal Error", "Something went badly wrong :(") 
 ```
 
-The root window hides itself so quickly that we don't notice it at all.
+The root window hides itself so quickly that we don't notice it at all. It's
+also possible to unhide it like `root.deiconify()`.
 
 ## Custom dialogs
 
@@ -401,8 +402,8 @@ old root window before creating a new one.
   program in this tutorial to decide which function to use.
 - If you don't want a root window, you can create it and hide it
   immediately with the `withdraw()` method.
-- Don't create multiple root windows. Use `tk.Toplevel` instead, it has
-  a handy `transient()` method too.
+- Don't use multiple root windows at the same time. Use `tk.Toplevel` instead;
+  it has a handy `transient()` method too.
 - You can use `some_window.protocol('WM_DELETE_WINDOW', callback)` to
   change what clicking the X button does. You can close the window with
   the `destroy()` method.
