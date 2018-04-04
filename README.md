@@ -11,6 +11,10 @@ tutorial, and you don't even need to know what is a GUI. All you need is
 [basic Python
 skills](https://github.com/Akuli/python-tutorial/tree/master/basics#basics).
 
+**If you need help**, you're not alone! [Click
+here](https://kiwiirc.com/client/chat.freenode.net/##learnpython) to go
+to a free Python help chat. If you see Akuli in the user list, that's me.
+
 ## Which GUI toolkit?
 
 GUI is short for Graphical User Interface. It means a program that we
