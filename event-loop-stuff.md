@@ -25,7 +25,7 @@ callback.
 
 ## After Callbacks
 
-The `after` method is documented in [after(3tcl)][after(3tcl)], and it's
+The `after` method is documented in [after(3tcl)], and it's
 an easy way to run stuff in Tk's main loop. All widgets have this
 method, and it doesn't matter which widget's `after` method you use.
 `any_widget.after(milliseconds, callback)` runs `callback()` after

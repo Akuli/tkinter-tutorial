@@ -190,9 +190,9 @@ them are explained in [the manual pages](getting-started.md#manual-pages).
 
 | Python module           | Manual page                                                                                                                 |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `tkinter.messagebox`    | [tk_messageBox(3tk)][tk_messageBox(3tk)]                                                                                    |
-| `tkinter.filedialog`    | [tk_getOpenFile(3tk)][tk_getOpenFile(3tk)] and [tk_chooseDirectory(3tk)][tk_chooseDirectory(3tk)]                           |
-| `tkinter.colorchooser`  | [tk_chooseColor(3tk)][tk_chooseColor(3tk)]                                                                                  |
+| `tkinter.messagebox`    | [tk_messageBox(3tk)]                                                                                                        |
+| `tkinter.filedialog`    | [tk_getOpenFile(3tk)] and [tk_chooseDirectory(3tk)]                                                                         |
+| `tkinter.colorchooser`  | [tk_chooseColor(3tk)]                                                                                                       |
 | `tkinter.simpledialog`  | No manual page, but the module seems to be from [this tutorial](http://effbot.org/tkinterbook/tkinter-dialog-windows.htm).  |
 
 ## Message dialogs without the root window
@@ -215,7 +215,7 @@ any other windows. For example, our program might need to display an
 error message and exit before the main window is created.
 
 In these cases, we can create a root window and hide it with the
-`withdraw()` method. It's documented in [wm(3tk)][wm(3tk)]
+`withdraw()` method. It's documented in [wm(3tk)]
 as `wm withdraw`; you can scroll down to it or just press Ctrl+F
 and type "withdraw".
 
@@ -265,8 +265,7 @@ Things like message boxes need a root window, and if we create more than one
 root window, we can't be sure about which root window is used and we may
 get weird problems.
 
-The [toplevel(3tk)][toplevel(3tk)] widget is a window that uses an
-existing root window:
+The [toplevel(3tk)] widget is a window that uses an existing root window:
 
 [include]: # (toplevel.py)
 ```python
@@ -335,8 +334,7 @@ okbutton = tk.Button(dialog, text="OK", command=dialog.destroy)
 
 Many programs display a "do you want to save your changes?" dialog when
 the user closes the main window. We can also do this with tkinter using
-the `root.protocol()` method. It's documented in [wm(3tk)][wm(3tk)] as
-`wm protocol`.
+the `root.protocol()` method. It's documented in [wm(3tk)] as `wm protocol`.
 
 [include]: # (wanna-quit.py)
 ```python

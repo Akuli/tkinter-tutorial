@@ -13,8 +13,8 @@ import re
 
 # these shouldn't conflict with Python code examples because 3tk and
 # 3tcl are invalid syntax in Python
-# this matches [anything][any_word(3tcl or 3tk)]
-LINK_REGEX = re.compile(r'\[.*?\]\[(\w+\(3(?:tk|tcl)\))\]')
+# this matches [anything][any_word(3tcl or 3tk)] or just the second [...] part
+LINK_REGEX = re.compile(r'(?:\[.*?\])?\[(\w+\(3(?:tk|tcl)\))\]')
 LINK_LIST_REGEX = re.compile(
     r'^\[manpage list\]: # \(start\)$' +
     r'[\S\s]*?' +

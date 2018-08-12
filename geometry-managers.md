@@ -6,7 +6,7 @@ this tutorial we'll learn more about pack and other geometry managers.
 
 ## Pack
 
-The [pack(3tk)][pack(3tk)] geometry manager is really simple and easy to
+The [pack(3tk)] geometry manager is really simple and easy to
 use. Let's create a window like this with it:
 
 ```
@@ -91,8 +91,8 @@ of the label.
 
 ## Grid
 
-Let's make a similar GUI as in the pack example, but with
-[grid(3tk)][grid(3tk)] instead of pack.
+Let's make a similar GUI as in the pack example, but with [grid(3tk)] instead
+of pack.
 
 [include]: # (grid.py)
 ```python
@@ -229,7 +229,7 @@ root.mainloop()
 
 ## Place
 
-The [place(3tk)][place(3tk)] geometry manager can be used for absolute
+The [place(3tk)] geometry manager can be used for absolute
 positioning with pixels, and that's almost always a bad idea. But place
 supports relative positioning too, and it's useful for things like
 message boxes. Tk has [built-in message
