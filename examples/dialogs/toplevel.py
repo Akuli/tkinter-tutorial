@@ -1,10 +1,13 @@
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 def display_dialog():
-    dialog = tk.Toplevel()
+    dialog = tkinter.Toplevel()
+    big_frame = ttk.Frame(dialog)
+    big_frame.pack(fill='both', expand=True)
 
-    label = tk.Label(dialog, text="Hello World")
+    label = ttk.Label(big_frame, text="Hello World")
     label.place(relx=0.5, rely=0.3, anchor='center')
 
     dialog.transient(root)
@@ -12,7 +15,10 @@ def display_dialog():
     dialog.wait_window()
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Click me", command=display_dialog)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button = ttk.Button(big_frame, text="Click me", command=display_dialog)
 button.pack()
 root.mainloop()

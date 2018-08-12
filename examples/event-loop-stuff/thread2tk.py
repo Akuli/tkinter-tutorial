@@ -1,7 +1,8 @@
 import queue
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 the_queue = queue.Queue()
 
@@ -28,13 +29,16 @@ def after_callback():
     print('after_callback got', message)
     if message is not None:
         # we're not done yet, let's do something with the message and
-        # come back ater
+        # come back later
         label['text'] = message
         root.after(100, after_callback)
 
 
-root = tk.Tk()
-label = tk.Label(root)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+label = ttk.Label(big_frame)
 label.pack()
 
 threading.Thread(target=thread_target).start()

@@ -1,7 +1,7 @@
 import threading
 import time
-import tkinter as tk
-from tkinter import messagebox
+import tkinter
+from tkinter import ttk, messagebox
 
 
 def do_slow_stuff():
@@ -26,6 +26,9 @@ def start_doing_slow_stuff():
     root.after(200, check_if_ready, thread)
 
 
-root = tk.Tk()
-tk.Button(root, text="Start", command=start_doing_slow_stuff).pack()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+ttk.Button(big_frame, text="Start", command=start_doing_slow_stuff).pack()
 root.mainloop()

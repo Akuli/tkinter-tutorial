@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter
 from tkinter import messagebox
 
 
@@ -8,6 +8,6 @@ def wanna_quit():
         root.destroy()
 
 
-root = tk.Tk()
+root = tkinter.Tk()
 root.protocol('WM_DELETE_WINDOW', wanna_quit)
 root.mainloop()

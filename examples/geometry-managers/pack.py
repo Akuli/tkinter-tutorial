@@ -1,11 +1,14 @@
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-button = tk.Button(root, text="This stretches")
-label = tk.Label(root, text="This doesn't stretch")
-statusbar = tk.Label(root, text="This is a status bar", relief='sunken')
+button = ttk.Button(big_frame, text="This stretches")
+label = ttk.Label(big_frame, text="This doesn't stretch")
+statusbar = ttk.Label(big_frame, text="This is a status bar", relief='sunken')
 
 statusbar.pack(side='bottom', fill='x')
 button.pack(side='left', fill='both', expand=True)

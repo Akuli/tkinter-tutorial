@@ -1,8 +1,9 @@
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-def make_calculator_frame(root):
-    frame = tk.Frame(root)
+def make_calculator_frame(big_frame):
+    frame = ttk.Frame(big_frame)
 
     rows = [
         ['7', '8', '9', '*', '/'],
@@ -14,12 +15,12 @@ def make_calculator_frame(root):
     for y, row in enumerate(rows):
         for x, character in enumerate(row):
             if character is not None:
-                button = tk.Button(frame, text=character)
+                button = ttk.Button(frame, text=character, width=3)
                 button.grid(row=y, column=x, sticky='nswe')
 
-    zerobutton = tk.Button(frame, text='0')
+    zerobutton = ttk.Button(frame, text='0', width=1)
     zerobutton.grid(row=3, column=0, columnspan=2, sticky='nswe')
-    equalbutton = tk.Button(frame, text='=')
+    equalbutton = ttk.Button(frame, text='=', width=1)
     equalbutton.grid(row=2, column=3, rowspan=2, columnspan=2, sticky='nswe')
 
     for x in range(5):
@@ -30,23 +31,26 @@ def make_calculator_frame(root):
     return frame
 
 
-def make_message_frame(root):
-    frame = tk.Frame(root)
+def make_message_frame(big_frame):
+    frame = ttk.Frame(big_frame)
 
-    label = tk.Label(frame, text="This is a very important message.")
+    label = ttk.Label(frame, text="This is a very important message.")
     label.place(relx=0.5, rely=0.3, anchor='center')
-    button = tk.Button(frame, text="OK")
+    button = ttk.Button(frame, text="OK")
     button.place(relx=0.5, rely=0.8, anchor='center')
 
     return frame
 
 
 def main():
-    root = tk.Tk()
+    root = tkinter.Tk()
+    big_frame = ttk.Frame(root)
+    big_frame.pack(fill='both', expand=True)
 
-    calculator = make_calculator_frame(root)
-    message = make_message_frame(root)
-    statusbar = tk.Label(root, text="This is a status bar.", relief='sunken')
+    calculator = make_calculator_frame(big_frame)
+    message = make_message_frame(big_frame)
+    statusbar = ttk.Label(big_frame, text="This is a status bar.",
+                          relief='sunken')
 
     statusbar.pack(side='bottom', fill='x')
     calculator.pack(side='left', fill='y')

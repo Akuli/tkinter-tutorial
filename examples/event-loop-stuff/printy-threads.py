@@ -1,6 +1,7 @@
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 # in a real program it's best to use after callbacks instead of
@@ -16,8 +17,11 @@ def start_new_thread():
     thread.start()
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Start the blocking function",
-                   command=start_new_thread)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button = ttk.Button(big_frame, text="Start the blocking function",
+                    command=start_new_thread)
 button.pack()
 root.mainloop()

@@ -1,5 +1,6 @@
-import tkinter as tk
 import time
+import tkinter
+from tkinter import ttk
 
 
 # this must return soon after starting this
@@ -11,8 +12,11 @@ def change_text():
     root.after(1000, change_text)
 
 
-root = tk.Tk()
-label = tk.Label(root, text='0')
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+label = ttk.Label(big_frame, text='0')
 label.pack()
 
 change_text()      # don't forget to actually start it :)

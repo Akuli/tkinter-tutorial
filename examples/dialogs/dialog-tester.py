@@ -1,12 +1,12 @@
 import functools
-import tkinter as tk
-from tkinter import messagebox, filedialog, simpledialog, colorchooser
+import tkinter
+from tkinter import ttk, messagebox, filedialog, simpledialog, colorchooser
 
 
 class Demo:
 
-    def __init__(self, root, modulename):
-        self.frame = tk.LabelFrame(root, text=("tkinter." + modulename))
+    def __init__(self, big_frame, modulename):
+        self.frame = ttk.LabelFrame(big_frame, text=("tkinter." + modulename))
         self.modulename = modulename
 
     # this makes buttons that demonstrate messagebox functions
@@ -27,7 +27,7 @@ class Demo:
 
         callback = functools.partial(self.on_click, call_string,
                                      function, args, kwargs)
-        button = tk.Button(self.frame, text=functionname, command=callback)
+        button = ttk.Button(self.frame, text=functionname, command=callback)
         button.pack()
 
     def on_click(self, call_string, function, args, kwargs):
@@ -36,9 +36,11 @@ class Demo:
         print('  it returned', repr(result))
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-msgboxdemo = Demo(root, "messagebox")
+msgboxdemo = Demo(big_frame, "messagebox")
 msgboxdemo.add_button(
     "showinfo", messagebox.showinfo,
     ["Important Message", "Hello World!"])
@@ -61,7 +63,7 @@ msgboxdemo.add_button(
     "askyesnocancel", messagebox.askyesnocancel,
     ["Save Changes?", "Do you want to save your changes before quitting?"])
 
-filedialogdemo = Demo(root, "filedialog")
+filedialogdemo = Demo(big_frame, "filedialog")
 filedialogdemo.add_button(
     "askopenfilename", filedialog.askopenfilename,
     kwargs={'title': "Open File"})
@@ -69,7 +71,7 @@ filedialogdemo.add_button(
     "asksaveasfilename", filedialog.asksaveasfilename,
     kwargs={'title': "Save As"})
 
-simpledialogdemo = Demo(root, "simpledialog")
+simpledialogdemo = Demo(big_frame, "simpledialog")
 simpledialogdemo.add_button(
     "askfloat", simpledialog.askfloat,
     ["Pi Question", "What's the value of pi?"])
@@ -80,7 +82,7 @@ simpledialogdemo.add_button(
     "askstring", simpledialog.askstring,
     ["Editor Question", "What is your favorite editor?"])
 
-colorchooserdemo = Demo(root, "colorchooser")
+colorchooserdemo = Demo(big_frame, "colorchooser")
 colorchooserdemo.add_button(
     "askcolor", colorchooser.askcolor,
     kwargs={'title': "Choose a Color"})

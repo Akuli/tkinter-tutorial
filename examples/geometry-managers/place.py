@@ -1,11 +1,14 @@
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-label = tk.Label(root, text="This is a very important message.")
+label = ttk.Label(big_frame, text="This is a very important message.")
 label.place(relx=0.5, rely=0.3, anchor='center')
-button = tk.Button(root, text="OK", command=root.destroy)
+button = ttk.Button(big_frame, text="OK", command=root.destroy)
 button.place(relx=0.5, rely=0.8, anchor='center')
 
 root.title("Important Message")

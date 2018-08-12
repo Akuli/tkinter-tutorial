@@ -1,7 +1,8 @@
 import queue
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 the_queue = queue.Queue()
 
@@ -18,7 +19,10 @@ def on_click():
     the_queue.put("hello")
 
 
-root = tk.Tk()
-tk.Button(root, text="Click me", command=on_click).pack()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+ttk.Button(big_frame, text="Click me", command=on_click).pack()
 threading.Thread(target=thread_target).start()
 root.mainloop()
