@@ -20,16 +20,12 @@ sudo apt install python3-tk
 
 That's enough talking. Let's do the classic Hello World program :)
 
-[include]: # (hello-world.py)
+[include]: # (hello-world-tk.py)
 ```python
 import tkinter
-from tkinter import ttk
 
 root = tkinter.Tk()
-big_frame = ttk.Frame(root)
-big_frame.pack(fill='both', expand=True)
-
-label = ttk.Label(big_frame, text="Hello World!")
+label = tkinter.Label(root, text="Hello World!")
 label.pack()
 root.mainloop()
 ```
@@ -50,22 +46,23 @@ There are many things going on in this short code. Let's go through it
 line by line.
 
 ```python
-import tkinter as tk
+import tkinter
 ```
 
-This line is important. Many other tkinter tutorials use
-`from tkinter import *` instead, and then they use things like `Label`
-instead of `tk.Label`. **Don't use star imports.** It will confuse you
-and other people because you aren't sure about where `Label` comes from
-if the file is many lines long, but it also confuses many tools that
-process code automatically.
+Many other tkinter tutorials use `from tkinter import *` instead, and then they
+use things like `Label` instead of `tk.Label`. **Don't use star imports.** It
+will confuse you and other people. You can't be sure about where `Label` comes
+from if the file is many lines long, but many tools that process code
+automatically will also be confused. Overall, star imports are evil.
 
-You can also just `import tkinter`, and then use `tkinter.Label` instead
-of `tk.Label`. Usually tkinter programs use tkinter's classes so much
-that it's easier to `import tkinter as tk`.
+Some people like to do `import tkinter as tk` and then use `tk.Label` instead
+of `tkinter.Label`. There's nothing wrong with that, and you can do that too if
+you want to. It's also possible to do `from tkinter import Tk, Label, Button`,
+which feels a little bit like a star import to me, but it's definitely not as
+bad as a star import.
 
 ```python
-root = tk.Tk()
+root = tkinter.Tk()
 ```
 
 The root window is the main window of our program. In this case, it's
@@ -73,7 +70,7 @@ the only window that our program creates. Tkinter starts Tcl when you
 create the root window.
 
 ```python
-label = tk.Label(root, text="Hello World!")
+label = tkinter.Label(root, text="Hello World!")
 ```
 
 Like most other GUI toolkits, Tk uses **widgets**. A widget is something
@@ -91,6 +88,31 @@ label.pack()
 
 This adds the label into the root window so we can see it.
 
+Instead of using a `label` variable, you can also do this:
+
+```python
+tkinter.Label(root, text="Hello World!").pack()
+```
+
+But don't do this:
+
+```python
+label = tkinter.Label(root, text="Hello World!").pack()   # this is probably a mistake
+```
+
+Look carefully, the above code creates a label, packs it, and then sets a
+`label` variable to whatever the `.pack()` returns. That is not same as the
+label widget. It is `None` because most functions return `None` when they don't
+need to return anything more meaningful (I have written more about this
+[here](pytut-return-values)), so you'll get errors like
+`NoneType object something something` when you try to use the `label` (see
+[here](pytut-none)).
+
+[pytut-return-values]: https://github.com/Akuli/python-tutorial/blob/master/basics/using-functions.md#return-values
+[pytut-none]: https://github.com/Akuli/python-tutorial/blob/master/basics/variables.md#none
+
+Anyway... let's continue going through the lines of our example code.
+
 ```python
 root.mainloop()
 ```
@@ -98,6 +120,88 @@ root.mainloop()
 The code before this takes usually just a fraction of a second to run,
 but this line of code runs until we close the window. It's usually
 something between a few seconds and a few hours.
+
+## Hello Ttk!
+
+There is a Tcl library called Ttk, short for "themed tk". I'll show you why you
+should use it instead of the non-Ttk code soon.
+
+The `tkinter.ttk` module contains things for using Ttk with Python. Here is a
+tkinter program that displays two buttons that do nothing when they are
+clicked. One of the buttons is a Ttk button and the other isn't.
+
+[include]: # (why-ttk.py)
+```python
+import tkinter
+from tkinter import ttk
+
+root = tkinter.Tk()
+tkinter.Button(root, text="Click me").pack()
+ttk.Button(root, text="Click me").pack()
+root.mainloop()
+```
+
+The GUI looks like this on Windows 7:
+
+![good-looking button and bad-looking button](images/tk-ttk.png)
+
+The ttk button is the one that looks a lot better. Tk itself is very old, and
+its button widget is probably just as old, and it looks very old too. Ttk
+widgets look much better in general, and you should be using nothing but them.
+Using Ttk widgets in tkinter is mostly easy; you just need to do
+`from tkinter import ttk` and then use `ttk.SomeWidget` instead of
+`tkinter.SomeWidget`. tl;dr: **Use ttk.**
+
+Unfortunately writing Ttk code is kind of inconvenient because there's no way
+to create a root window that uses Ttk, so some people just create a Tk root
+window and add things to that, e.g. like this:
+
+[include]: # (ttk-label-button-broken.py)
+```python
+import tkinter
+from tkinter import ttk
+
+root = tkinter.Tk()
+ttk.Label(root, text="Hello!").pack()
+ttk.Button(root, text="Click me").pack()
+root.mainloop()
+```
+
+GUIs like this looks horrible on my Linux.
+
+![GUI with inconsistent colors](images/ttk-missing-big-frame.png)
+
+The background of this root window is not using Ttk, so it has *very* different
+colors than the Ttk widgets. We can fix that by adding a big Ttk frame to the
+Tk root window, and packing it with `fill='both', expand=True` so that it will
+always fill the entire window. **I'll do this in all examples from now on.**
+This is annoying, but keep in mind that you only need to do this once for each
+window; in a big project you typically have many widgets inside each window,
+and this extra boilerplate doesn't annoy that much after all.
+
+```python
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+# now add all widgets to big_frame instead of root
+```
+
+Here is the complete hello world program, with all boilerplates. It shouldn't
+look too horrible on anyone's system.
+
+[include]: # (hello-world.py)
+```python
+import tkinter
+from tkinter import ttk
+
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+label = ttk.Label(big_frame, text="Hello World!")
+label.pack()
+root.mainloop()
+```
 
 ## Tkinter and the `>>>` prompt
 
@@ -241,7 +345,7 @@ sudo apt install tk-doc
 Then you can read the manual pages like this:
 
 ```
-man 3tk label
+man ttk_label
 ```
 
 ## Summary
@@ -250,6 +354,9 @@ man 3tk label
 - Now you should have tkinter installed and you should know how to use
   it on the `>>>` prompt.
 - Don't use star imports.
+- Now you should know what a widget is.
+- Use ttk widgets with `from tkinter import ttk`, and always create a big
+  `ttk.Frame` packed with `fill='both', expand=True` into each root window.
 - You can set the values of Tk's options when creating widgets like
   `label = tk.Label(root, text="hello")`, and you can change them later
   using any of these ways:
