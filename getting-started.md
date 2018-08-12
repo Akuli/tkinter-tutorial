@@ -104,9 +104,9 @@ Look carefully, the above code creates a label, packs it, and then sets a
 `label` variable to whatever the `.pack()` returns. That is not same as the
 label widget. It is `None` because most functions return `None` when they don't
 need to return anything more meaningful (I have written more about this
-[here](pytut-return-values)), so you'll get errors like
+[here][pytut-return-values]), so you'll get errors like
 `NoneType object something something` when you try to use the `label` (see
-[here](pytut-none)).
+[here][pytut-none]).
 
 [pytut-return-values]: https://github.com/Akuli/python-tutorial/blob/master/basics/using-functions.md#return-values
 [pytut-none]: https://github.com/Akuli/python-tutorial/blob/master/basics/variables.md#none
