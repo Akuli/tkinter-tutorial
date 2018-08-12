@@ -22,10 +22,14 @@ That's enough talking. Let's do the classic Hello World program :)
 
 [include]: # (hello-world.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
-root = tk.Tk()
-label = tk.Label(root, text="Hello World!")
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+label = ttk.Label(big_frame, text="Hello World!")
 label.pack()
 root.mainloop()
 ```

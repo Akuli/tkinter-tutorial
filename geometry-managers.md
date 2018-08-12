@@ -31,14 +31,17 @@ Here's the code.
 
 [include]: # (pack.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-button = tk.Button(root, text="This stretches")
-label = tk.Label(root, text="This doesn't stretch")
-statusbar = tk.Label(root, text="This is a status bar", relief='sunken')
+button = ttk.Button(big_frame, text="This stretches")
+label = ttk.Label(big_frame, text="This doesn't stretch")
+statusbar = ttk.Label(big_frame, text="This is a status bar", relief='sunken')
 
 statusbar.pack(side='bottom', fill='x')
 button.pack(side='left', fill='both', expand=True)
@@ -93,21 +96,24 @@ Let's make a similar GUI as in the pack example, but with
 
 [include]: # (grid.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-button = tk.Button(root, text="This stretches")
-label = tk.Label(root, text="This doesn't stretch")
-statusbar = tk.Label(root, text="This is a status bar", relief='sunken')
+button = ttk.Button(big_frame, text="This stretches")
+label = ttk.Label(big_frame, text="This doesn't stretch")
+statusbar = ttk.Label(big_frame, text="This is a status bar", relief='sunken')
 
 button.grid(row=0, column=0, sticky='nswe')
 label.grid(row=0, column=1)
 statusbar.grid(row=1, column=0, columnspan=2, sticky='we')
 
-root.grid_rowconfigure(0, weight=1)
-root.grid_columnconfigure(0, weight=1)
+big_frame.grid_rowconfigure(0, weight=1)
+big_frame.grid_columnconfigure(0, weight=1)
 
 root.title("Grid Test")
 root.geometry('300x150')
@@ -180,10 +186,13 @@ easy with grid:
 
 [include]: # (calculator.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
 # None means that we'll create the button later
 rows = [
@@ -196,19 +205,23 @@ rows = [
 for y, row in enumerate(rows):
     for x, character in enumerate(row):
         if character is not None:
-            button = tk.Button(root, text=character)
+            # try this without width=3 so you'll know why i put it there
+            button = ttk.Button(big_frame, text=character, width=3)
             button.grid(row=y, column=x, sticky='nswe')
 
-zerobutton = tk.Button(root, text='0')
+# the widths of these buttons are set to smallest possible values because grid
+# will make sure that they are wide enough, e.g. zerobutton is below '1' and
+# '2', and it will have the same width as the '1' and '2' buttons together
+zerobutton = ttk.Button(big_frame, text='0', width=1)
 zerobutton.grid(row=3, column=0, columnspan=2, sticky='nswe')
-equalbutton = tk.Button(root, text='=')
+equalbutton = ttk.Button(big_frame, text='=', width=1)
 equalbutton.grid(row=2, column=3, rowspan=2, columnspan=2, sticky='nswe')
 
 # let's make everything stretch when the window is resized
 for x in range(5):
-    root.grid_columnconfigure(x, weight=1)
+    big_frame.grid_columnconfigure(x, weight=1)
 for y in range(4):
-    root.grid_rowconfigure(y, weight=1)
+    big_frame.grid_rowconfigure(y, weight=1)
 
 root.title("Calculator")
 root.mainloop()
@@ -244,14 +257,17 @@ Here's the code:
 
 [include]: # (place.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-label = tk.Label(root, text="This is a very important message.")
+label = ttk.Label(big_frame, text="This is a very important message.")
 label.place(relx=0.5, rely=0.3, anchor='center')
-button = tk.Button(root, text="OK", command=root.destroy)
+button = ttk.Button(big_frame, text="OK", command=root.destroy)
 button.place(relx=0.5, rely=0.8, anchor='center')
 
 root.title("Important Message")
@@ -309,11 +325,12 @@ frames:
 
 [include]: # (frames.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-def make_calculator_frame(root):
-    frame = tk.Frame(root)
+def make_calculator_frame(big_frame):
+    frame = ttk.Frame(big_frame)
 
     rows = [
         ['7', '8', '9', '*', '/'],
@@ -325,12 +342,12 @@ def make_calculator_frame(root):
     for y, row in enumerate(rows):
         for x, character in enumerate(row):
             if character is not None:
-                button = tk.Button(frame, text=character)
+                button = ttk.Button(frame, text=character, width=3)
                 button.grid(row=y, column=x, sticky='nswe')
 
-    zerobutton = tk.Button(frame, text='0')
+    zerobutton = ttk.Button(frame, text='0', width=1)
     zerobutton.grid(row=3, column=0, columnspan=2, sticky='nswe')
-    equalbutton = tk.Button(frame, text='=')
+    equalbutton = ttk.Button(frame, text='=', width=1)
     equalbutton.grid(row=2, column=3, rowspan=2, columnspan=2, sticky='nswe')
 
     for x in range(5):
@@ -341,23 +358,26 @@ def make_calculator_frame(root):
     return frame
 
 
-def make_message_frame(root):
-    frame = tk.Frame(root)
+def make_message_frame(big_frame):
+    frame = ttk.Frame(big_frame)
 
-    label = tk.Label(frame, text="This is a very important message.")
+    label = ttk.Label(frame, text="This is a very important message.")
     label.place(relx=0.5, rely=0.3, anchor='center')
-    button = tk.Button(frame, text="OK")
+    button = ttk.Button(frame, text="OK")
     button.place(relx=0.5, rely=0.8, anchor='center')
 
     return frame
 
 
 def main():
-    root = tk.Tk()
+    root = tkinter.Tk()
+    big_frame = ttk.Frame(root)
+    big_frame.pack(fill='both', expand=True)
 
-    calculator = make_calculator_frame(root)
-    message = make_message_frame(root)
-    statusbar = tk.Label(root, text="This is a status bar.", relief='sunken')
+    calculator = make_calculator_frame(big_frame)
+    message = make_message_frame(big_frame)
+    statusbar = ttk.Label(big_frame, text="This is a status bar.",
+                          relief='sunken')
 
     statusbar.pack(side='bottom', fill='x')
     calculator.pack(side='left', fill='y')

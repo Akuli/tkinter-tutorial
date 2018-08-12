@@ -28,14 +28,17 @@ Here's the code:
 
 [include]: # (boring-button.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-label = tk.Label(root, text="This is a button test.")
+label = ttk.Label(big_frame, text="This is a button test.")
 label.pack()
-button = tk.Button(root, text="Click me!")
+button = ttk.Button(big_frame, text="Click me!")
 button.pack()
 
 root.title("Button Test")
@@ -75,15 +78,19 @@ button:
 
 [include]: # (working-button.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 def print_hello():
     print("hello")
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Print hello", command=print_hello)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button = ttk.Button(big_frame, text="Print hello", command=print_hello)
 button.pack()
 root.mainloop()
 ```
@@ -105,7 +112,8 @@ and see what happens:
 [include]: # (stupid-callback.py)
 ```python
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 def ok_callback():
@@ -116,11 +124,15 @@ def stupid_callback():
     time.sleep(5)
 
 
-root = tk.Tk()
-button1 = tk.Button(root, text="This is OK", command=ok_callback)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button1 = ttk.Button(big_frame, text="This is OK", command=ok_callback)
 button1.pack()
-button2 = tk.Button(root, text="This sucks", command=stupid_callback)
+button2 = ttk.Button(big_frame, text="This sucks", command=stupid_callback)
 button2.pack()
+
 root.mainloop()
 ```
 
@@ -176,17 +188,21 @@ So we can write code like this:
 [include]: # (many-buttons.py)
 ```python
 import functools
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 def print_hello_number(number):
     print("hello", number)
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
 for i in range(1, 6):
-    button = tk.Button(root, text="Hello %d" % i,
-                       command=functools.partial(print_hello_number, i))
+    button = ttk.Button(big_frame, text="Hello %d" % i,
+                        command=functools.partial(print_hello_number, i))
     button.pack()
 
 root.mainloop()

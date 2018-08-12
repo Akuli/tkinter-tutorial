@@ -10,16 +10,19 @@ Here's a simple example:
 
 [include]: # (hello-world.py)
 ```python
-import tkinter as tk
-from tkinter import messagebox
+import tkinter
+from tkinter import ttk, messagebox
 
 
 def do_hello_world():
     messagebox.showinfo("Important Message", "Hello World!")
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Click me", command=do_hello_world)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button = ttk.Button(big_frame, text="Click me", command=do_hello_world)
 button.pack()
 root.mainloop()
 ```
@@ -76,14 +79,14 @@ using the X button in the corner.
 [include]: # (dialog-tester.py)
 ```python
 import functools
-import tkinter as tk
-from tkinter import messagebox, filedialog, simpledialog, colorchooser
+import tkinter
+from tkinter import ttk, messagebox, filedialog, simpledialog, colorchooser
 
 
 class Demo:
 
-    def __init__(self, root, modulename):
-        self.frame = tk.LabelFrame(root, text=("tkinter." + modulename))
+    def __init__(self, big_frame, modulename):
+        self.frame = ttk.LabelFrame(big_frame, text=("tkinter." + modulename))
         self.modulename = modulename
 
     # this makes buttons that demonstrate messagebox functions
@@ -104,7 +107,7 @@ class Demo:
 
         callback = functools.partial(self.on_click, call_string,
                                      function, args, kwargs)
-        button = tk.Button(self.frame, text=functionname, command=callback)
+        button = ttk.Button(self.frame, text=functionname, command=callback)
         button.pack()
 
     def on_click(self, call_string, function, args, kwargs):
@@ -113,9 +116,11 @@ class Demo:
         print('  it returned', repr(result))
 
 
-root = tk.Tk()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
 
-msgboxdemo = Demo(root, "messagebox")
+msgboxdemo = Demo(big_frame, "messagebox")
 msgboxdemo.add_button(
     "showinfo", messagebox.showinfo,
     ["Important Message", "Hello World!"])
@@ -138,7 +143,7 @@ msgboxdemo.add_button(
     "askyesnocancel", messagebox.askyesnocancel,
     ["Save Changes?", "Do you want to save your changes before quitting?"])
 
-filedialogdemo = Demo(root, "filedialog")
+filedialogdemo = Demo(big_frame, "filedialog")
 filedialogdemo.add_button(
     "askopenfilename", filedialog.askopenfilename,
     kwargs={'title': "Open File"})
@@ -146,7 +151,7 @@ filedialogdemo.add_button(
     "asksaveasfilename", filedialog.asksaveasfilename,
     kwargs={'title': "Save As"})
 
-simpledialogdemo = Demo(root, "simpledialog")
+simpledialogdemo = Demo(big_frame, "simpledialog")
 simpledialogdemo.add_button(
     "askfloat", simpledialog.askfloat,
     ["Pi Question", "What's the value of pi?"])
@@ -157,7 +162,7 @@ simpledialogdemo.add_button(
     "askstring", simpledialog.askstring,
     ["Editor Question", "What is your favorite editor?"])
 
-colorchooserdemo = Demo(root, "colorchooser")
+colorchooserdemo = Demo(big_frame, "colorchooser")
 colorchooserdemo.add_button(
     "askcolor", colorchooser.askcolor,
     kwargs={'title': "Choose a Color"})
@@ -223,7 +228,7 @@ from tkinter import messagebox
 root = tk.Tk()
 root.withdraw()
 
-messagebox.showerror("Fatal Error", "Something went badly wrong :(") 
+messagebox.showerror("Fatal Error", "Something went badly wrong :(")
 ```
 
 The root window hides itself so quickly that we don't notice it at all. It's
@@ -265,13 +270,16 @@ existing root window:
 
 [include]: # (toplevel.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 def display_dialog():
-    dialog = tk.Toplevel()
+    dialog = tkinter.Toplevel()
+    big_frame = ttk.Frame(dialog)
+    big_frame.pack(fill='both', expand=True)
 
-    label = tk.Label(dialog, text="Hello World")
+    label = ttk.Label(big_frame, text="Hello World")
     label.place(relx=0.5, rely=0.3, anchor='center')
 
     dialog.transient(root)
@@ -279,8 +287,11 @@ def display_dialog():
     dialog.wait_window()
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Click me", command=display_dialog)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button = ttk.Button(big_frame, text="Click me", command=display_dialog)
 button.pack()
 root.mainloop()
 ```
@@ -329,7 +340,7 @@ the `root.protocol()` method. It's documented in [wm(3tk)][wm(3tk)] as
 
 [include]: # (wanna-quit.py)
 ```python
-import tkinter as tk
+import tkinter
 from tkinter import messagebox
 
 
@@ -339,7 +350,7 @@ def wanna_quit():
         root.destroy()
 
 
-root = tk.Tk()
+root = tkinter.Tk()
 root.protocol('WM_DELETE_WINDOW', wanna_quit)
 root.mainloop()
 ```
@@ -351,14 +362,17 @@ that in tkinter.
 
 [include]: # (startup-dialog.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 # only use this before creating the main root window! otherwise you get
 # two root windows at the same time, and that's bad, see above
 def startup_dialog(labeltext):
     result = None
-    rooty_dialog = tk.Tk()
+    rooty_dialog = tkinter.Tk()
+    big_frame = ttk.Frame(rooty_dialog)
+    big_frame.pack(fill='both', expand=True)
 
     # result is left to None if the dialog is closed without clicking OK
     def on_ok():
@@ -367,27 +381,30 @@ def startup_dialog(labeltext):
         nonlocal result
 
         result = entry.get()
-        rooty_dialog.destroy()   # stops dialog.mainloop()
+        rooty_dialog.destroy()   # stops rooty_dialog.mainloop()
 
-    label = tk.Label(rooty_dialog, text=labeltext)
+    label = ttk.Label(big_frame, text=labeltext)
     label.place(relx=0.5, rely=0.3, anchor='center')
-    entry = tk.Entry(rooty_dialog)
+    entry = ttk.Entry(big_frame)
     entry.place(relx=0.5, rely=0.5, anchor='center')
-    okbutton = tk.Button(rooty_dialog, text="OK", command=on_ok)
+    okbutton = ttk.Button(big_frame, text="OK", command=on_ok)
     okbutton.place(relx=0.5, rely=0.8, anchor='center')
 
     rooty_dialog.geometry('250x150')
     rooty_dialog.mainloop()
+
     # now the dialog's mainloop has stopped, so the dialog doesn't exist
     # anymore and creating another root window is ok
-
     return result
 
 
 name = startup_dialog("Enter your name:")
 if name is not None:      # the user clicked OK
-    root = tk.Tk()
-    label = tk.Label(root, text=("Hello %s!" % name))
+    root = tkinter.Tk()
+    big_frame = ttk.Frame(root)
+    big_frame.pack(fill='both', expand=True)
+
+    label = ttk.Label(big_frame, text=("Hello %s!" % name))
     label.pack()
     root.mainloop()
 ```

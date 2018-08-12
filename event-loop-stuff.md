@@ -37,8 +37,9 @@ For example, this program displays a simple clock with after callbacks and
 
 [include]: # (timeout-clock.py)
 ```python
-import tkinter as tk
 import time
+import tkinter
+from tkinter import ttk
 
 
 # this must return soon after starting this
@@ -50,8 +51,11 @@ def change_text():
     root.after(1000, change_text)
 
 
-root = tk.Tk()
-label = tk.Label(root, text='0')
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+label = ttk.Label(big_frame, text='0')
 label.pack()
 
 change_text()      # don't forget to actually start it :)
@@ -71,7 +75,8 @@ minimal example:
 ```python
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 # in a real program it's best to use after callbacks instead of
@@ -87,9 +92,12 @@ def start_new_thread():
     thread.start()
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Start the blocking function",
-                   command=start_new_thread)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+button = ttk.Button(big_frame, text="Start the blocking function",
+                    command=start_new_thread)
 button.pack()
 root.mainloop()
 ```
@@ -142,8 +150,8 @@ clock repeatedly. Here's an example:
 ```python
 import threading
 import time
-import tkinter as tk
-from tkinter import messagebox
+import tkinter
+from tkinter import ttk, messagebox
 
 
 def do_slow_stuff():
@@ -168,8 +176,11 @@ def start_doing_slow_stuff():
     root.after(200, check_if_ready, thread)
 
 
-root = tk.Tk()
-tk.Button(root, text="Start", command=start_doing_slow_stuff).pack()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+ttk.Button(big_frame, text="Start", command=start_doing_slow_stuff).pack()
 root.mainloop()
 ```
 
@@ -228,7 +239,8 @@ Like this:
 import queue
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 the_queue = queue.Queue()
 
@@ -255,13 +267,16 @@ def after_callback():
     print('after_callback got', message)
     if message is not None:
         # we're not done yet, let's do something with the message and
-        # come back ater
+        # come back later
         label['text'] = message
         root.after(100, after_callback)
 
 
-root = tk.Tk()
-label = tk.Label(root)
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+label = ttk.Label(big_frame)
 label.pack()
 
 threading.Thread(target=thread_target).start()
@@ -291,7 +306,8 @@ don't need `block=False`. Here's an example:
 import queue
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 the_queue = queue.Queue()
 
@@ -308,8 +324,11 @@ def on_click():
     the_queue.put("hello")
 
 
-root = tk.Tk()
-tk.Button(root, text="Click me", command=on_click).pack()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+ttk.Button(big_frame, text="Click me", command=on_click).pack()
 threading.Thread(target=thread_target).start()
 root.mainloop()
 ```
@@ -328,7 +347,8 @@ None to the queue when `root.mainloop` has completed. Like this:
 import queue
 import threading
 import time
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 the_queue = queue.Queue()
 
@@ -349,8 +369,11 @@ def on_click():
     the_queue.put("hello")
 
 
-root = tk.Tk()
-tk.Button(root, text="Click me", command=on_click).pack()
+root = tkinter.Tk()
+big_frame = ttk.Frame(root)
+big_frame.pack(fill='both', expand=True)
+
+ttk.Button(big_frame, text="Click me", command=on_click).pack()
 threading.Thread(target=thread_target).start()
 root.mainloop()
 
