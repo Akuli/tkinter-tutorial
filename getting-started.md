@@ -179,11 +179,10 @@ GUIs like this looks horrible on my Linux system.
 
 The background of this root window is not using Ttk, so it has *very* different
 colors than the Ttk widgets. We can fix that by adding a big Ttk frame to the
-Tk root window, and packing it with `fill='both', expand=True` so that it will
-always fill the entire window. **I'll do this in all examples from now on.**
-This is annoying, but keep in mind that you only need to do this once for each
-window; in a big project you typically have many widgets inside each window,
-and this extra boilerplate doesn't annoy that much after all.
+Tk root window. A frame is an empty widget, and we can add any other widgets we
+want inside a frame. If we add a `ttk.Frame` to the root window and pack it
+with `fill='both', expand=True`, it will always fill the entire window, making
+the window look like a Ttk widget. **I'll do this in all examples from now on.**
 
 ```python
 root = tkinter.Tk()
@@ -192,8 +191,12 @@ big_frame.pack(fill='both', expand=True)
 # now add all widgets to big_frame instead of root
 ```
 
-Here is the complete hello world program, with all boilerplates. It shouldn't
-look too horrible on anyone's system.
+This is annoying, but keep in mind that you only need to do this once for each
+window; in a big project you typically have many widgets inside each window,
+and this extra boilerplate doesn't annoy that much after all.
+
+Here is a complete hello world program. It shouldn't look too horrible on
+anyone's system.
 
 [include]: # (hello-world.py)
 ```python
