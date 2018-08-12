@@ -5,4 +5,4 @@ from tkinter import messagebox
 root = tk.Tk()
 root.withdraw()
 
-messagebox.showerror("Fatal Error", "Something went badly wrong :(") 
+messagebox.showerror("Fatal Error", "Something went badly wrong :(")
