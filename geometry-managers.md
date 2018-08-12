@@ -158,8 +158,8 @@ widgets. Each widget goes to its own row and column so it doesn't matter
 which order we add them in.
 
 ```python
-root.grid_rowconfigure(0, weight=1)
-root.grid_columnconfigure(0, weight=1)
+big_frame.grid_rowconfigure(0, weight=1)
+big_frame.grid_columnconfigure(0, weight=1)
 ```
 
 This is like setting `expand=True` with pack. The button is packed to
