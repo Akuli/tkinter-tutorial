@@ -224,8 +224,10 @@ languages, but Tk's manual pages are easy to apply to tkinter code.
 You'll find the manual pages useful later in this tutorial.
 
 This tutorial contains links to the manual pages, like this
-[label(3tk)][label(3tk)] link. There's also [a list of the manual
+[ttk_label(3tk)][ttk_label(3tk)] link. There's also [a list of the manual
 pages](https://www.tcl.tk/man/tcl/TkCmd/contents.htm).
+
+[TODO]: # (also link to Tcl manual)
 
 If you are using Linux and you want to read the manual pages on a
 terminal, you can also install Tk's manual pages using your package
@@ -268,5 +270,5 @@ man 3tk label
   manual pages.
 
 [manpage list]: # (start)
-[label(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/label.htm
+[ttk_label(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/ttk_label.htm
 [manpage list]: # (end)

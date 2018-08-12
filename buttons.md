@@ -71,7 +71,7 @@ Run the program. If you click the button, nothing happens at all. That's
 boring!
 
 As usual, all possible [options](getting-started.md#widget-options) are
-listed in the [button(3tk)][button(3tk)] manual page. One of these
+listed in the [ttk_button(3tk)][ttk_button(3tk)] manual page. One of these
 options is `command`, and if we set it to a function it will be ran when
 the button is clicked. This program prints hello every time we click its
 button:
@@ -221,5 +221,5 @@ functions in loops can be
 - Use `functools.partial` when you need to pass arguments to callbacks.
 
 [manpage list]: # (start)
-[button(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/button.htm
+[ttk_button(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/ttk_button.htm
 [manpage list]: # (end)

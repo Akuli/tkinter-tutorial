@@ -27,9 +27,9 @@ LINK_LIST_REGEX = re.compile(
 TK_TEMPLATE = 'https://www.tcl.tk/man/tcl/TkCmd/%s.htm'
 TCL_TEMPLATE = 'https://www.tcl.tk/man/tcl/TclCmd/%s.htm'
 URLS = {
-    'button(3tk)': TK_TEMPLATE % 'button',
+    'ttk_button(3tk)': TK_TEMPLATE % 'ttk_button',
     'grid(3tk)': TK_TEMPLATE % 'grid',
-    'label(3tk)': TK_TEMPLATE % 'label',
+    'ttk_label(3tk)': TK_TEMPLATE % 'ttk_label',
     'pack(3tk)': TK_TEMPLATE % 'pack',
     'place(3tk)': TK_TEMPLATE % 'place',
     'tk_chooseColor(3tk)': TK_TEMPLATE % 'chooseColor',
