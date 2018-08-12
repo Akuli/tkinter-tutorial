@@ -147,13 +147,15 @@ The GUI looks like this on Windows 7:
 
 The ttk button is the one that looks a lot better. Tk itself is very old, and
 its button widget is probably just as old, and it looks very old too. Ttk
-widgets look much better in general, and you should be using nothing but them.
-Using Ttk widgets in tkinter is mostly easy; you just need to do
-`from tkinter import ttk` and then use `ttk.SomeWidget` instead of
-`tkinter.SomeWidget`. tl;dr: **Use ttk.**
+widgets look much better in general, and you should *always* use Ttk widgets.
+tl;dr: **Use ttk.**
+
+If you already have some code that doesn't use Ttk widgets, you just need to
+add `from tkinter import ttk` and then replace `tkinter.SomeWidget` with
+`ttk.SomeWidget` everywhere. Most things will work just fine.
 
 Unfortunately writing Ttk code is kind of inconvenient because there's no way
-to create a root window that uses Ttk, so some people just create a Tk root
+to create a root window that uses Ttk. Some people just create a Tk root
 window and add things to that, e.g. like this:
 
 [include]: # (ttk-label-button-broken.py)
@@ -167,9 +169,13 @@ ttk.Button(root, text="Click me").pack()
 root.mainloop()
 ```
 
-GUIs like this looks horrible on my Linux.
+GUIs like this looks horrible on my Linux system.
 
 ![GUI with inconsistent colors](images/ttk-missing-big-frame.png)
+
+```
+<xqb>   woa it sak balz :|
+```
 
 The background of this root window is not using Ttk, so it has *very* different
 colors than the Ttk widgets. We can fix that by adding a big Ttk frame to the
