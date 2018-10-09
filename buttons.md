@@ -51,7 +51,7 @@ As you can see, the code is mostly the same as in the hello world
 example, but there are some new things. I didn't show these in the hello
 world example because I wanted to keep it as simple as possible.
 
-- We can create `tk.Button` widgets just like `tk.Label` widgets.
+- We can create `ttk.Button` widgets just like `ttk.Label` widgets.
 - We can `pack()` multiple widgets, and they end up below each other.
     We'll talk more about this in [the next chapter](geometry-managers.md).
 - The title of our hello world window was "tk", but it can be changed
@@ -213,7 +213,7 @@ functions in loops can be
 [confusing](https://docs.python.org/3/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result).
 
 ## Summary
-- The `tk.Button` widget displays a button.
+- The `ttk.Button` widget displays a button.
 - Buttons have a `command` option. It can be set to a function that runs
   when the button is clicked.
 - Button commands and other callbacks should not block. It means that

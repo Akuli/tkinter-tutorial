@@ -289,7 +289,7 @@ from the top of the window. Other valid anchor values are n like north,
 nw like north-west and so on.
 
 ```python
-button = tk.Button(..., command=root.destroy)
+button = ttk.Button(..., command=root.destroy)
 ```
 
 This example isn't as boring as our calculator is because the OK button
@@ -316,7 +316,7 @@ Unfortunately tkinter doesn't raise an exception if you try to do that,
 but don't do it.
 
 You can still use multiple geometry managers in one program with
-`tk.Frame`. The frame is a simple widget that can be added to any other
+`ttk.Frame`. The frame is a simple widget that can be added to any other
 parent widget, and then other widgets can be added into the frame with a
 different geometry manager.
 
@@ -399,7 +399,7 @@ if __name__ == '__main__':
 - Use pack for big and simple layouts, grid for griddy things and place
   for relative things.
 - Don't use multiple geometry managers in one widget. You can mix
-  different geometry managers with `tk.Frame` by using one geometry
+  different geometry managers with `ttk.Frame` by using one geometry
   manager in each frame.
 
 [manpage list]: # (start)

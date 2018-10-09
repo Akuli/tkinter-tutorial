@@ -32,41 +32,6 @@ and wait for the user to click the button with just one function call.
 [The callback is blocking](buttons.md#blocking-callback-functions), but
 it doesn't matter here because Tk handles dialogs specially.
 
-If you have used [buttons](buttons.md) before most of the code is pretty
-easy to understand. But a couple things need explaning:
-
-```python
-import tkinter as tk
-from tkinter import messagebox
-```
-
-This probably feels a bit odd. First we import the whole tkinter as
-`tk`, but then we need to separately dig a `messagebox` module from
-tkinter. Why can't we just `import tkinter as tk` and use
-`tk.messagebox`? Actually we can, but only if something else has already
-imported the `messagebox`, so it's not a good idea.
-
-The reason is that `import tkinter` loads `tkinter/__init__.py`, but
-`tkinter.messagebox` comes from `tkinter/messagebox.py`:
-
-```python
->>> import tkinter      # only __init__.py loads
->>> tkinter
-<module 'tkinter' from '/bla/bla/bla/tkinter/__init__.py'>
->>> tkinter.messagebox
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: module 'tkinter' has no attribute 'messagebox'
->>> import tkinter.messagebox   # now messagebox.py loads too
->>> tkinter.messagebox
-<module 'tkinter.messagebox' from '/bla/bla/bla/tkinter/messagebox.py'>
->>>
-```
-
-Here Python didn't load `tkinter.messagebox` right away because many
-tkinter programs don't need it and `import tkinter` runs faster if
-Python doesn't need to load `messagebox.py` at all.
-
 The `tkinter.messagebox` module supports many other things too, and
 there are other modules like it as well. Here's an example that
 demonstrates most of the things that are possible. You can use this
@@ -221,11 +186,11 @@ and type "withdraw".
 
 [include]: # (startup-error.py)
 ```python
-import tkinter as tk
+import tkinter
 from tkinter import messagebox
 
 
-root = tk.Tk()
+root = tkinter.Tk()
 root.withdraw()
 
 messagebox.showerror("Fatal Error", "Something went badly wrong :(")
@@ -244,26 +209,31 @@ with tkinter's dialogs.
 It might be tempting to create multiple root windows, but **don't do
 this, this example is BAD**:
 
+[include]: # (two-roots-bad.py)
 ```python
-import tkinter as tk
+import tkinter
+from tkinter import ttk
 
 
 def display_dialog():
-    root2 = tk.Tk()     # BAD! NO!!
-    label = tk.Label(root2, text="Hello World")
-    label.place(relx=0.5, rely=0.3, anchor='center')
+    root2 = tkinter.Tk()      # BAD! NO!!
+    big_frame2 = ttk.Frame(root2)
+    big_frame2.pack(fill='both', expand=True)
+
+    ttk.Label(big_frame2, text="Hello World").place(relx=0.5, rely=0.3, anchor='center')
     root2.mainloop()
 
 
-root = tk.Tk()
-button = tk.Button(root, text="Click me", command=display_dialog)
+root = tkinter.Tk()
+button = ttk.Button(root, text="Click me", command=display_dialog)
 button.pack()
 root.mainloop()
 ```
 
 Things like message boxes need a root window, and if we create more than one
 root window, we can't be sure about which root window is used and we may
-get weird problems.
+get weird problems. Or worse, your code may work just fine for you and someone
+else running it will get weird problems.
 
 The [toplevel(3tk)] widget is a window that uses an existing root window:
 
@@ -327,7 +297,7 @@ destroy it like `dialog.destroy()`. This is useful for creating buttons
 that close the dialog:
 
 ```python
-okbutton = tk.Button(dialog, text="OK", command=dialog.destroy)
+okbutton = ttk.Button(dialog, text="OK", command=dialog.destroy)
 ```
 
 ## "Do you want to quit" dialogs
