@@ -169,7 +169,7 @@ ttk.Button(root, text="Click me").pack()
 root.mainloop()
 ```
 
-GUIs like this looks horrible on my Linux system.
+GUIs like this look horrible on my Linux system.
 
 ![GUI with inconsistent colors](images/ttk-missing-big-frame.png)
 
