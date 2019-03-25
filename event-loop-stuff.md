@@ -18,7 +18,7 @@ any new events over and over again, many times every second. This is
 called an **event loop** or **main loop**.
 
 Button callbacks are also ran in the main loop. So if our button
-callback takes 5 seconds to run, the main loop can't proess other events
+callback takes 5 seconds to run, the main loop can't process other events
 while it's running. For example, it can't close the root window when we
 try to close it. That's why everything froze with our `time.sleep(5)`
 callback.
