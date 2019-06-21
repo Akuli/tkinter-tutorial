@@ -273,7 +273,7 @@ we got a label that displayed the text "Hello World!". Here `text` was
 an option, and its value was `"Hello World!"`.
 
 We can also change the text after creating the label in a few different
-ways:
+ways (we'll find this useful [later](buttons.md)):
 
 ```python
 >>> label['text'] = "New text"        # it behaves like a dict
