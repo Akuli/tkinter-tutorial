@@ -305,7 +305,7 @@ Grid works for big things too, but it's best for things that are
 obviously grids, like our calculator.
 
 Place is the easiest choice when you want to use percents to position
-widgets relatively, like we did in our pack example. This is useful with
+widgets relatively, like we did in the example. This is useful with
 things like message dialogs.
 
 ## Combining the geometry managers
