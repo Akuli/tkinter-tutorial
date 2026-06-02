@@ -249,3 +249,4 @@ functions in loops can be
 [manpage list]: # (start)
 [ttk_button(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/ttk_button.htm
 [manpage list]: # (end)
+Next: [Geometry Managers](geometry-managers.md)
