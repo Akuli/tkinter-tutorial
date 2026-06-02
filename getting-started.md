@@ -388,3 +388,5 @@ man ttk_label
 [manpage list]: # (start)
 [ttk_label(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/ttk_label.htm
 [manpage list]: # (end)
+
+Next: [Buttons](buttons.md)
