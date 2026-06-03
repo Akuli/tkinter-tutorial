@@ -407,3 +407,4 @@ if __name__ == '__main__':
 [pack(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/pack.htm
 [place(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/place.htm
 [manpage list]: # (end)
+Next: [Dialogs](dialogs.md)
