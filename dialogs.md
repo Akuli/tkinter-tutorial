@@ -401,3 +401,4 @@ old root window before creating a new one.
 [toplevel(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/toplevel.htm
 [wm(3tk)]: https://www.tcl.tk/man/tcl/TkCmd/wm.htm
 [manpage list]: # (end)
+Next: [Event Loop and Threads](event-loop-stuff.md)
